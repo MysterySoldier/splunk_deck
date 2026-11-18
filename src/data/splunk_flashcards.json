@@ -1,0 +1,1280 @@
+{
+  "app": "Splunk Deck",
+  "source": "Exam_study.xlsx (uploaded 2026-11-17)",
+  "count": 141,
+  "cards": [
+    {
+      "card": 1,
+      "row": 1,
+      "question": "When setting up a POST workflow action, what can a user enter as the POST arguments?",
+      "answer": "A combination of static text and field value pairs.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 2,
+      "row": 2,
+      "question": "When an Instant Pivot is saved as a report, what does Splunk create from the search?",
+      "answer": "A data model.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 3,
+      "row": 3,
+      "question": "Which of the following statements best describes a macro?",
+      "answer": "A macro is a portion of a search that can be reused in multiple places.",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 4,
+      "row": 4,
+      "question": "A POST workflow action will pass which types of arguments to an external website?",
+      "answer": "A mix of clear text strings and variables.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 5,
+      "row": 5,
+      "question": "A user wants to create a workflow action that will retrieve a specific field value from an event and run a search in a new browser window in the user's Splunk instance. What kind of workflow action should they create?",
+      "answer": "A search workflow action, because the user is running a new search with a specific field value from an event returned in the user's search.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 6,
+      "row": 6,
+      "question": "In which Settings scetion are macros defined?",
+      "answer": "Advanced Search.",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 7,
+      "row": 7,
+      "question": "(answer needs backticks)     Ben created a macro named airport_code_translator(2). His coworker, Alice, wants to use the macro to find the name of a nearby airport. Which of the following search strings will return the results that Alice needs?",
+      "answer": "`airport_code_translator(LAX, English)`",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 8,
+      "row": 8,
+      "question": "Which of the following statements about field aliases is true?",
+      "answer": "Aliases can be created for fields extracted at index time or search.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 9,
+      "row": 9,
+      "question": "Which of the following objects can a calculated field use as a source?",
+      "answer": "An alias of a field.",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 10,
+      "row": 10,
+      "question": "When using the Field Extractor (FX) to perform a field extraction, which delimeter can be used?",
+      "answer": "Any consistent character.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 11,
+      "row": 11,
+      "question": "Which of the following is true about the datasets used in the Pivot tool?",
+      "answer": "Any dataset type, including lookups and table datasets, can be opened in Pivot.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 12,
+      "row": 12,
+      "question": "Which of the following commands connects and additional table of data directly to the right side of the existing table?",
+      "answer": "appendcols.",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 13,
+      "row": 13,
+      "question": "Which of the following is one of the pre-configuered data models included in the Splunk Common Information Model (CIM) add-on?",
+      "answer": "Authentication.",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 14,
+      "row": 15,
+      "question": "Which type of visualization shows relationships between discrete values in three dimensions?",
+      "answer": "Bubble Chart.",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 15,
+      "row": 16,
+      "question": "How is a macro referenced in a search?",
+      "answer": "By enclosing the macro name in backtick characters (').",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 16,
+      "row": 18,
+      "question": "Which of the following statements describes calculated fields?",
+      "answer": "Calculated fields are a shortcut for repetitive and complex eval commands.",
+      "hint": "look for the word eval",
+      "topic": "Eval & Calculated Fields",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 17,
+      "row": 19,
+      "question": "Which of the following is the correct SPL syntax for calling a macro named change_thing with two arguments?",
+      "answer": "change_thing(field1,field2).",
+      "hint": "wrong answers have a space before parenthesis or quotes, etc",
+      "topic": "Macros",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 18,
+      "row": 20,
+      "question": "Which of the following transforming commands can be used with transactions?",
+      "answer": "chart, timechart, stats, eventstats.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 19,
+      "row": 21,
+      "question": "Which command can include both and over and a by clause to divide results into sub-groupings?",
+      "answer": "chart.",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 20,
+      "row": 22,
+      "question": "How does attribrute inheritance work in a dataset?",
+      "answer": "Child datasets inherit all fields from the parent events.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 21,
+      "row": 23,
+      "question": "Where are the descriptions of the data models that come with the Splunk Common Information Model (CIM) Add-on documented?",
+      "answer": "CIM Add-on manual.",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 22,
+      "row": 24,
+      "question": "Which of the following is an example of a GET workflow action?",
+      "answer": "Clicking on the Marketing value in an event and being redirected to an internal wiki about the Marketing Department.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 23,
+      "row": 25,
+      "question": "When using the transaction command, how are evicted transactions identified?",
+      "answer": "closed_txn field is set to 0, or false.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 24,
+      "row": 26,
+      "question": "Which delimeter would work best for extracting fields from the event below?   2025-02-03 09:1244, user mlopez, group, etc\u2026",
+      "answer": "comma (,).",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 25,
+      "row": 27,
+      "question": "What needs to be configured in order to normalize data using the Splunk Common Information Model (CIM) Add-on?",
+      "answer": "Configure event types that reference the appropriate tags.",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 26,
+      "row": 28,
+      "question": "Which approach is recommended when normalizing data with the Splunk Common Information Model (CIM) add-on?",
+      "answer": "Consult the CIM data model reference tables.",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 27,
+      "row": 29,
+      "question": "While normalizing data to match the Common Information Model (CIM), a user discovers that the region field contains some mispelled values, for example \"New Bock\" istead of \"New York\". Which of the following would correct this issue?",
+      "answer": "Create a calculated field outside the CIM data model to manually adjust the values, and then make that calculated field available inside the data model.",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 28,
+      "row": 30,
+      "question": "Given the event below, how can the value in the PostalCode field be used to get the local weather from an external resource?   2024-06-11 14:05:17, 172.16.8.41 etc\u2026",
+      "answer": "Create a GET workflow action.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 29,
+      "row": 31,
+      "question": "What is the most effective way to extract username and IP address fields from the following events?  May 1 16:17:02 server01 CRON[9548]:pam_unix(cron session): session openedfor user root.  Two more May 1st events\u2026",
+      "answer": "Create a regex-based field extraction using the Field Extractor tool.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 30,
+      "row": 32,
+      "question": "Which of the following file formats can be extracted using a delimeter field extraction?",
+      "answer": "CSV.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 31,
+      "row": 34,
+      "question": "What information must be included when using the datamodel command?",
+      "answer": "Data model dataset name.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 32,
+      "row": 35,
+      "question": "The Splunk Common Information Model (CIM) is a collection of what type of knowledge object?",
+      "answer": "Data nodels.",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 33,
+      "row": 36,
+      "question": "Which field extraction method should be chosen for comma-separated data?",
+      "answer": "Delimeters.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 34,
+      "row": 37,
+      "question": "When adding an eval expression field to a data model, which option sets the field name that users see in Pivot?",
+      "answer": "Display name.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 35,
+      "row": 39,
+      "question": "A calculated field is a shortcut for performing repetitive, long or complexc transformations using which of the following commands?",
+      "answer": "eval.",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 36,
+      "row": 40,
+      "question": "What type of expression validates a search macro argument?",
+      "answer": "eval.",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 37,
+      "row": 41,
+      "question": "Which of the following is provided with the Common Information Model (CIM) add-on?",
+      "answer": "Event category tags.",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 38,
+      "row": 42,
+      "question": "How are event types different from saved reports?",
+      "answer": "Event types do not include a time range.",
+      "hint": null,
+      "topic": "Event Types & Tags",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 39,
+      "row": 43,
+      "question": "A data model can nosist of what three types of datasets?",
+      "answer": "Events, searches, and transactions.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 40,
+      "row": 44,
+      "question": "Which command calculates statistics while keeping the original the original events?",
+      "answer": "eventstats.",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 41,
+      "row": 45,
+      "question": "Which search retrieves events with the event type web_errors?",
+      "answer": "eventtype=web_errors.",
+      "hint": "= sign and no puncuation around the words web errors",
+      "topic": "Event Types & Tags",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 42,
+      "row": 46,
+      "question": "What are the expected search results from runnin the following SPL?",
+      "answer": "Every event in the network indexx that does not contain a StatusCode of 200, including events that do not have a value in this field.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 43,
+      "row": 47,
+      "question": "(the number 2 in parenthesis not brackets)    A search includes example(100,200). What is the macro's name?",
+      "answer": "example(2)'",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 44,
+      "row": 48,
+      "question": "A calculated field may be based on which of the following?",
+      "answer": "Extracted fields.",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 45,
+      "row": 49,
+      "question": "Which of the following objects can a calculated field refrence?",
+      "answer": "Extracted fields.",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 46,
+      "row": 51,
+      "question": "Which knowledge object is used to normalize field names to comply with the Splunk Common Information Model (CIM)?",
+      "answer": "Field alias.",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 47,
+      "row": 52,
+      "question": "Which of the following applies a schema at search?",
+      "answer": "Field extractions.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 48,
+      "row": 53,
+      "question": "Which of the folowing kniwledge objects can a field alias be crerated for?",
+      "answer": "Field extractions.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 49,
+      "row": 54,
+      "question": "When creating an event type, which of the following is allowed in the search string?",
+      "answer": "Field/value pairs.",
+      "hint": null,
+      "topic": "Event Types & Tags",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 50,
+      "row": 55,
+      "question": "Two result tables are merged with the join command. Outer table (main search): email\u2026etc.  Inner table (subsearch): employee\u2026etc\u2026.  The SPL used to join the tablesis: | join type=outer\u2026etc.   How many rows does the new table contain?",
+      "answer": "Five.",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 51,
+      "row": 57,
+      "question": "Which of the following statements describes GET workflow actions?",
+      "answer": "Get workflow actions can be configured to open the URI link in the current window or in a new window.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 52,
+      "row": 58,
+      "question": "A Splunk app is configured to extract domain names in web service logs and specify them as a field named domain. What workflow action would return an external IP lookup for the field named domain?",
+      "answer": "GET.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 53,
+      "row": 59,
+      "question": "Priya configured the following event types. Event types are listed by mname and priority, color, team alpha Green 1, etc\u2026 An event matches both eventtype-Team_Alpha and eventtype-Berlin. What color does the event show in the user interface?",
+      "answer": "Green.",
+      "hint": null,
+      "topic": "Event Types & Tags",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 54,
+      "row": 60,
+      "question": "A user wants to look up WHOIS information for a domain. How should the URI be written when configuring a GET workflow action?",
+      "answer": "http://whois.net/whois/$domain$.",
+      "hint": "$$ before and after doamin",
+      "topic": "Workflow Actions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 55,
+      "row": 62,
+      "question": "(the only answer with a space before and after the = sign)   Jordan would like to change all values in the product_name field to uppercase. Which of the following searches should she use?",
+      "answer": "index = sales | eval product_name = upper(product_name).",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 56,
+      "row": 63,
+      "question": "Which SPL query groups results that occur within 15 seconds of each other by user and host?",
+      "answer": "index=firewall | transaction user host maxspan=15s.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 57,
+      "row": 64,
+      "question": "Which of the foloowing searches could be saved as an event type?",
+      "answer": "index=games sourcetype=score player=* score>9999.",
+      "hint": null,
+      "topic": "Event Types & Tags",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 58,
+      "row": 65,
+      "question": "Which of these SPL quesries will correctly return with an address of 192.0.0.1?",
+      "answer": "index=proxy | where like(ipaddress, \"192.%\").",
+      "hint": "%, not * or .",
+      "topic": "Search & SPL",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 59,
+      "row": 66,
+      "question": "Which of the following searches can be saved as an event type?",
+      "answer": "index=server_550 sourcetype=SETA_848 code=200.",
+      "hint": "no additional words after 200, the other answers have additional lines",
+      "topic": "Event Types & Tags",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 60,
+      "row": 67,
+      "question": "(not the one with page BY server)   Which of these stats commands will show the total bytes for each unique combination of page and server?",
+      "answer": "index=web | stats sum(bytes) BY page server.",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 61,
+      "row": 68,
+      "question": "Consider the following search: index=web sourcetype=access_combined   The log shows several events that share the same JSESSIONID value (SD421K26502F783). View the events as a group. Which search groups events by JSESSIONID?",
+      "answer": "index=web sourcetype=access_combined | transaction JSESSIONID | search SD421K26502F783.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 62,
+      "row": 69,
+      "question": "A user needs a table showing the total revenue for each product in each sales region. Which SPL query is correct?",
+      "answer": "index=X | chart sum(price) by product, region.",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 63,
+      "row": 71,
+      "question": "Which of the following describes the transaction command?",
+      "answer": "it is an SPL command that groups events together with shared values in selected fields.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 64,
+      "row": 72,
+      "question": "In a data model, Dana adds a Regional Orders dataset as a child of the All Store Transactions dataset. Which of the following is true of All Store Transactions dataset?",
+      "answer": "It is unaffected by the change as it is the parent dataset.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 65,
+      "row": 73,
+      "question": "Which of the following are required to create a POST workflow action?",
+      "answer": "Label, URI, post arguments.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 66,
+      "row": 74,
+      "question": "When used with the timechart command, which value of the limit argument returns all values?",
+      "answer": "limit=0.",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 67,
+      "row": 75,
+      "question": "Which option of the transaction command would be used to specify the maximum time between events in a transaction?",
+      "answer": "maxpause.",
+      "hint": "not maxspan",
+      "topic": "Transactions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 68,
+      "row": 76,
+      "question": "Which of the following options should be added to a transaction search to keep each transaction within a five-minute window?",
+      "answer": "maxspan=5m.",
+      "hint": "not maxlimit",
+      "topic": "Transactions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 69,
+      "row": 77,
+      "question": "What is the correct format for naming a nacro with multiple arguments?",
+      "answer": "monthly_sales(3).",
+      "hint": "3 is in parenthesis not brackets",
+      "topic": "Search & SPL",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 70,
+      "row": 78,
+      "question": "When defining a macro, what are the required elements?",
+      "answer": "Name and definition.",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 71,
+      "row": 79,
+      "question": "Which of the following is a function of the Splunk Common Information Model (CIM)?",
+      "answer": "Normalizing data across a Splunk deployment.",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 72,
+      "row": 81,
+      "question": "What is the correct Boolean order of evalauation for the where command from first to last?",
+      "answer": "Parenthesis, NOT, AND, OR.  In that oerder, not the one that says NOT, OR, AND)",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 73,
+      "row": 82,
+      "question": "Which of the following is an advantage of the stats command over the transaction command?",
+      "answer": "Perfoms faster and more efficiently.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 74,
+      "row": 83,
+      "question": "Which search commands give a user access to data model summaries?",
+      "answer": "pivot, tstats, and datamodel.",
+      "hint": "pivot tstats not stats",
+      "topic": "Pivot & Data Models",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 75,
+      "row": 84,
+      "question": "Which tool uses data models to generate reports and dashboards panels without using SPL?",
+      "answer": "Pivot.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 76,
+      "row": 85,
+      "question": "Which of the following statements describesPOST workflow actions?",
+      "answer": "POST workflow actions can open a web page in either the same window or a new window.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 77,
+      "row": 86,
+      "question": "Which of the following is a correctly written mathematical function for the eval command?",
+      "answer": "pow(X,Y).",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 78,
+      "row": 88,
+      "question": "Which method in the Field Extractor would extract the port number from the folowing event?  10/20/2022 - 125.24.20.1 ++++ port 54 - user: admin <web error>",
+      "answer": "Regular expression.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 79,
+      "row": 89,
+      "question": "What are search macros?",
+      "answer": "Reusable pieces of search processing language.",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 80,
+      "row": 90,
+      "question": "Which of the following must be contained in the data model?",
+      "answer": "Root dataset.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 81,
+      "row": 91,
+      "question": "When creating a data model,which root dataset requires at least one constraint?",
+      "answer": "Root event dataset.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 82,
+      "row": 93,
+      "question": "Which of the following definitions describs a macro named \"samplemacro\" that accepts two arguments.",
+      "answer": "samplemacro(2).",
+      "hint": "parenthesis around the 2, not brackets",
+      "topic": "Macros",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 83,
+      "row": 94,
+      "question": "At what point does the CIM add-on apply its preconfigured data models to the data?",
+      "answer": "Search time.",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 84,
+      "row": 95,
+      "question": "How is a search Workflow Action configured to run at the same time range as the original search?",
+      "answer": "Select the \"Use the same time range as the search that created the field listing\" checkbox.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 85,
+      "row": 96,
+      "question": "What does the fillnull command do in this search?  Index=main sourcetype=http:log | fillnull value=\"Unknown\" src",
+      "answer": "Set the values of the src field to \"Unknown\" if it is null.",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 86,
+      "row": 97,
+      "question": "Which of the following statements about event types is true?",
+      "answer": "Several event types can be associated with an event .",
+      "hint": null,
+      "topic": "Event Types & Tags",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 87,
+      "row": 98,
+      "question": "To which of the following can a field alias be applied?",
+      "answer": "Sourcetypes.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 88,
+      "row": 99,
+      "question": "What field delimeter should be used for the event below?   2023-10-25:11:30:00.000 Logout john.doe Chromium splunk.com",
+      "answer": "space.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 89,
+      "row": 100,
+      "question": "When using the timechart command, what optional argument is used to specify the interval of _time?",
+      "answer": "span.",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 90,
+      "row": 101,
+      "question": "(12 must have the h next to it)    Consider the following search, run over the last 7 days:   index=web sourcetype=access_combined | timechart avg(bytes) by product_name.  Which option changes the default time span so results are grouped into 12-hour intervals?",
+      "answer": "span=12h.",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 91,
+      "row": 102,
+      "question": "Which of the following field pairs should be normalized witht the Splunk Common Information Model (CIM) based on how they relate?",
+      "answer": "src_ip,source_ip.",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 92,
+      "row": 103,
+      "question": "Which of the following options defines the first event in a transaction?",
+      "answer": "startswith.",
+      "hint": "not startingwith",
+      "topic": "Transactions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 93,
+      "row": 104,
+      "question": "Which of the following is a use for a POST workflow action?",
+      "answer": "Submit a ticket in a ticketing system.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 94,
+      "row": 106,
+      "question": "Brad created a tag called \"SpecialProjectX\". It is associated with several field/value pairs, such as team=support, location =Austin, and release=Fuj. What search should Brad run to filter results for SpecialProjectX events related to the Support Team?",
+      "answer": "tag::team=SpecialProjectX.",
+      "hint": null,
+      "topic": "Event Types & Tags",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 95,
+      "row": 107,
+      "question": "(:: and =)  What syntax would a user enter to find events where the prod tag is applied to a value of the host field?",
+      "answer": "tag::host=prod.",
+      "hint": null,
+      "topic": "Event Types & Tags",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 96,
+      "row": 108,
+      "question": "(tag not tags)  What is the correct syntax to find events associated with a tag?",
+      "answer": "tag=<value>.",
+      "hint": null,
+      "topic": "Event Types & Tags",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 97,
+      "row": 109,
+      "question": "Nina created several tags for employees or Northwind Outfitters. She bagged each employee's badge ID with the department name and location.   Whicjh search would Nina use to find employees of the Marketing Department who don not work in the San Francisco office?",
+      "answer": "tag=Marketing NOT (tag=San_Francisco).",
+      "hint": null,
+      "topic": "Event Types & Tags",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 98,
+      "row": 110,
+      "question": "Which of the following statements about tags is true?",
+      "answer": "Tags can make your data more understandable.",
+      "hint": null,
+      "topic": "Event Types & Tags",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 99,
+      "row": 111,
+      "question": "When a calculated field has the same name as an extracted field, what happens to the extracted field?",
+      "answer": "The calculated field will override the extracted field.",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 100,
+      "row": 112,
+      "question": "What is the correct syntax for the transaction command?",
+      "answer": "The CIM provides a methodology to normalize data from different sources and source types.",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Exam_study.xlsx",
+      "needs_check": true,
+      "check_note": "Same question as row 153 but the answer is about CIM, not transaction syntax. Row 153 looks right."
+    },
+    {
+      "card": 101,
+      "row": 113,
+      "question": "Which of the folowing statements about a search workflow action is true?",
+      "answer": "The configured search string can include one or more placeholders for field values, surrounded by dollar signs.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 102,
+      "row": 114,
+      "question": "Which of the following is true about the Splunk Common Information Model (CIM)?",
+      "answer": "The data models included in the CIM are configured with data model acceleration turned off.",
+      "hint": "look for the word \"off\" not \"on\"",
+      "topic": "CIM & Normalizing",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 103,
+      "row": 115,
+      "question": "In the following eval statement, what is the value of description if theh status is 503? Index=main | eval description=case(status= =200, \"OK\", status= =404, \"Not Found\", status= =500, \"Internal Server Error\")",
+      "answer": "The description field would contain no value.",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 104,
+      "row": 116,
+      "question": "Marcus runs the following search to find which users have a high number of unauthorized events of the network.   Index=security source IN(badge_reader, vpn, proxy) | transaction username\u2026etc",
+      "answer": "The evencount field was created and then used to filter the resulting transactions.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 105,
+      "row": 117,
+      "question": "A user builds a data model, adds a field, and sets the field's flag to \"Hidden\". What effect does this havein Pivot?",
+      "answer": "The field is not displayed when the dataset is selected.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 106,
+      "row": 118,
+      "question": "What happens to the original field name when a field alias is created?",
+      "answer": "The original field name is not affected by the creation of a field alias.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 107,
+      "row": 119,
+      "question": "When would a user choose delimited field extraction in the Field Extractor (FX)?",
+      "answer": "The timestamp of the earliest event.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 108,
+      "row": 120,
+      "question": "Why would a user choose the transaction command instead of the stats command?",
+      "answer": "The transaction command keeps the raw data for each event.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 109,
+      "row": 121,
+      "question": "Why does the following search return no results?    Index=retail sourcetype=checkout_log | fillnull user | where isnull(user)",
+      "answer": "The user field is never null after the fillnull command.",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 110,
+      "row": 122,
+      "question": "What happens when a user edits the regular expression (regex) field extraction generated in the Field Extractor (FX)?",
+      "answer": "The user is unable to return to the automatic field extraction workflow.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 111,
+      "row": 123,
+      "question": "What is the purpose of a calculated field?",
+      "answer": "To automatically add fields at search time using an eval expression rather than manually including an eval command.",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 112,
+      "row": 124,
+      "question": "When would transaction be used instead of stats?",
+      "answer": "To group events based on start/end values.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 113,
+      "row": 125,
+      "question": "When is the transaction command the recommended choice?",
+      "answer": "To keep the raw data associated with related events.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 114,
+      "row": 126,
+      "question": "When is a GET workflow action needed?",
+      "answer": "To retrieve information from an external resource.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 115,
+      "row": 127,
+      "question": "Which of the folowing eval command functions is valid?",
+      "answer": "tostring().",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 116,
+      "row": 128,
+      "question": "What type of dataset cannot be accelrated?",
+      "answer": "Transaction.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 117,
+      "row": 129,
+      "question": "A user wants to create a new field alias for a field that appears in two sourcetypes. How many field aliases need to be created?",
+      "answer": "Two.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 118,
+      "row": 131,
+      "question": "With the transaction command, what is the default maximum span between events?",
+      "answer": "Unlimited.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 119,
+      "row": 132,
+      "question": "How are variables passed in URIs for POST actions?",
+      "answer": "URL encoded.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 120,
+      "row": 133,
+      "question": "(blank on the ends, no \"\" and  no $$)   Sydney would like to use a macro called US_Sales. How should the macro name appear for it to run?",
+      "answer": "US_Sales'",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 121,
+      "row": 134,
+      "question": "Which of the following does not describe how to create an event?",
+      "answer": "Use the Field Extractor to analyze and use the Save As button.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 122,
+      "row": 136,
+      "question": "(no $$ around these numbers, the other answers have $$)  The macro weekly_sales(2) contains the search string:   index=games | eval ProductSales = $Price$ * $AmountSold$.  Which of the following will return results?",
+      "answer": "weekly_sales(3.99, 10).",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 123,
+      "row": 137,
+      "question": "When would a user choose delimeter field extraction in the Field Extractor (FX)?",
+      "answer": "When a log file has values that are separated by the same character. For example, commas.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 124,
+      "row": 138,
+      "question": "In the field Extractor, when should the regular expression method be used?",
+      "answer": "When events contain unstructured data.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 125,
+      "row": 139,
+      "question": "When should you use the transaction command instead of the stats command?",
+      "answer": "When you need to group based on start and end contraints.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 126,
+      "row": 141,
+      "question": "Which of the following workflow actions can be executed from the search results? (choose three)",
+      "answer": "A. GET. B. POST. D. Search.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 127,
+      "row": 142,
+      "question": "Which of the following statements describe the search below?  Index=main | transactionclientip host maxspan=30s maxpause=5s (Choose two)",
+      "answer": "B. It groups events that share the same clientip and host  D. The first and last events are no more than 30 seconds apart.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 128,
+      "row": 143,
+      "question": "What does the Splunk Common Information Model (CIM) add-on include? (Choose two)",
+      "answer": "B. Pre-configured data models. C. Fields and event category tags.",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 129,
+      "row": 144,
+      "question": "Which are valid ways to create an event type? (choose two)",
+      "answer": "C. By going to the Settings menu and clicking Event Types > New  D. By selecting an event in search results and clicking Event Actions > Build Event Type.",
+      "hint": null,
+      "topic": "Event Types & Tags",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 130,
+      "row": 146,
+      "question": "When using the eval command, which of these characters can be used to concentrate a string and a number into a single value?",
+      "answer": ". (period).",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 131,
+      "row": 147,
+      "question": "When a single eval command contains multiple expressions, which delimeter separates them?",
+      "answer": ", (comma).",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 132,
+      "row": 148,
+      "question": "(must have the underscore _ before the word time)  For the following search, which field populates the x-axis?  Index=security sourcetype=linux_secure | timechart count by action",
+      "answer": "_time.",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 133,
+      "row": 149,
+      "question": "Given the following eval statement:   \u2026 | eval field1=if(isnotnull(field1), field1, 0, field2=if(isnull(field2), \"NO-VALUE\", field2)",
+      "answer": "\u2026 | fillnull field1 | fillnull value=\"NO-VALUE\" field2.",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 134,
+      "row": 150,
+      "question": "Which wildcard would a user specify to match on multiple characters when using the where command?",
+      "answer": "%.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 135,
+      "row": 151,
+      "question": "Which of the following eval commands will provide a new value for host from src if it exists.",
+      "answer": "| eval host = if(isnotnull(src), src, host).",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 136,
+      "row": 152,
+      "question": "Which syntax is used to represent an argument in a macro definition?",
+      "answer": "| fillnull value=\"Unassigned\".",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Exam_study.xlsx",
+      "needs_check": true,
+      "check_note": "Same question as row 156 but the answer is a fillnull command. Row 156 ($argument$) looks right."
+    },
+    {
+      "card": 137,
+      "row": 153,
+      "question": "What is the correct syntax for the transaction command?",
+      "answer": "| transaction clientip maxspan=5m maxpause=1m.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 138,
+      "row": 154,
+      "question": "When creating a search workflow action, what character(s) are used as a placeholder for field values in the search string?",
+      "answer": "$.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 139,
+      "row": 155,
+      "question": "How are arguments defined within the macro search string?",
+      "answer": "$arg$.",
+      "hint": "$ signs around the arg, not % or \"\"",
+      "topic": "Macros",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 140,
+      "row": 156,
+      "question": "Which syntax is used to represent an argument in a macro definition?",
+      "answer": "$argument$.",
+      "hint": "$$, not quotes or %%",
+      "topic": "Macros",
+      "source": "Exam_study.xlsx"
+    },
+    {
+      "card": 141,
+      "row": 157,
+      "question": "What does the fillnull command replace null values with, if the value arguments is not specified?",
+      "answer": "0.",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Exam_study.xlsx"
+    }
+  ]
+}

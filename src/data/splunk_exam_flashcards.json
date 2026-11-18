@@ -1,0 +1,1997 @@
+{
+  "app": "Splunk Deck",
+  "section": "Flash Cards",
+  "source": "splunk_exam_questions.json, single-answer only (221 of 241; 20 multi-select held out, no recorded answer)",
+  "count": 221,
+  "cards": [
+    {
+      "card": 1,
+      "question": "When linking key/value pairs in search strings, what syntax is used?",
+      "answer": "status=200",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 1
+    },
+    {
+      "card": 2,
+      "question": "Out of the following queries, which search string returns a field where the number of matching events is stored, and then stored as Purchases?",
+      "answer": "index=access_combined_wcookie status=200 file=\"success.do\" | stats count as \"Purchases\"",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 2
+    },
+    {
+      "card": 3,
+      "question": "Which of the following search strings only returns events from the source access_30day.log?",
+      "answer": "source=access_30day.log",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 3
+    },
+    {
+      "card": 4,
+      "question": "What is the default retention period of a search job in Splunk?",
+      "answer": "10 Minutes",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 4
+    },
+    {
+      "card": 5,
+      "question": "In a typical Splunk deployment, which of the following components is found on the machine that originates the data?",
+      "answer": "Forwarder",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 5
+    },
+    {
+      "card": 6,
+      "question": "When a scheduled report is run, what is the scope of the data that will be included in the report?",
+      "answer": "Reports display all information accessible to the owner.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 6
+    },
+    {
+      "card": 7,
+      "question": "The Boolean operator is just one of many search term components in Splunk. Which of the following is true about the boolean operator?",
+      "answer": "A boolean must be written in uppercase.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 7
+    },
+    {
+      "card": 8,
+      "question": "What search would return error events in index db_audit or failed or failing events in index linux_secure",
+      "answer": "(index=db_audit error) OR (index=linux_secure (failed OR failing))",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 8
+    },
+    {
+      "card": 9,
+      "question": "Based on the following search string, choose the answer that displays the correct pipe placement: index=main sourcetype=access_combined_wcookie status=403 stats count as Transactions",
+      "answer": "index=main sourcetype=access_combined_wcookie status=403 | stats count as Transactions",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Power User exam bank",
+      "exam_number": 9
+    },
+    {
+      "card": 10,
+      "question": "When using the top command within your query, which of the following constraints can be applied?",
+      "answer": "limit",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 10
+    },
+    {
+      "card": 11,
+      "question": "Based on Splunk's recommendations, which of the following is the best practice for naming conventions?",
+      "answer": "Group_Object_Description",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 11
+    },
+    {
+      "card": 12,
+      "question": "How can search results be preserved if they need to persist for more than 7 days after they are searched?",
+      "answer": "By scheduling a report.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 12
+    },
+    {
+      "card": 13,
+      "question": "Splunk search best practices include which of the following?",
+      "answer": "Filter by adding search terms as early as possible.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 13
+    },
+    {
+      "card": 14,
+      "question": "If you look at the dashboard panel that is based on a report, which of the following statements is true?",
+      "answer": "The search string in the panel cannot be modified, but the visualization can be altered.",
+      "hint": null,
+      "topic": "Visualizations",
+      "source": "Power User exam bank",
+      "exam_number": 14
+    },
+    {
+      "card": 15,
+      "question": "What are some of the common constraints associated with the top command?",
+      "answer": "showperc, countfield",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 15
+    },
+    {
+      "card": 16,
+      "question": "Which of the following is true about line charts when displaying search results based on splunk best practices?",
+      "answer": "Single and multiple series are best represented by line charts.",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 16
+    },
+    {
+      "card": 17,
+      "question": "Following a search, how are events displayed?",
+      "answer": "In reverse chronological order.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 17
+    },
+    {
+      "card": 18,
+      "question": "When attempting to modify user account settings and preferences, which of the following is true?",
+      "answer": "Clicking the login name in the Splunk bar will allow you to define the full name, time zone, and default app.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 18
+    },
+    {
+      "card": 19,
+      "question": "A scheduled report serves what primary purpose?",
+      "answer": "Automatically generating and sending reports at regular intervals.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 19
+    },
+    {
+      "card": 20,
+      "question": "What happens when you click and drag across the timeline after running a search?",
+      "answer": "Filters the results of the current search.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 20
+    },
+    {
+      "card": 21,
+      "question": "How can a static lookup file's contents be reviewed?",
+      "answer": "inputlookup",
+      "hint": null,
+      "topic": "Lookups",
+      "source": "Power User exam bank",
+      "exam_number": 21
+    },
+    {
+      "card": 22,
+      "question": "What must be done in order to use a lookup in Splunk?",
+      "answer": "The lookup file must be uploaded to Splunk and a lookup definition must be created.",
+      "hint": null,
+      "topic": "Lookups",
+      "source": "Power User exam bank",
+      "exam_number": 22
+    },
+    {
+      "card": 23,
+      "question": "When sorting on multiple fields with the sort command, what delimiter can be used between the field names in the search?",
+      "answer": ",",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Power User exam bank",
+      "exam_number": 23
+    },
+    {
+      "card": 24,
+      "question": "Which time range picker configuration would return real-time events for the past 30 seconds?",
+      "answer": "Real-time - Earliest: 30-seconds ago, Latest: Now",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 24
+    },
+    {
+      "card": 25,
+      "question": "What is the correct syntax to count the number of events containing a vendor_action field?",
+      "answer": "stats count(vendor_action)",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 25
+    },
+    {
+      "card": 26,
+      "question": "What is one benefit of creating dashboard panels from reports?",
+      "answer": "Any change to the underlying report will affect every dashboard that utilizes that report.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 26
+    },
+    {
+      "card": 27,
+      "question": "By default, which of the following fields would be listed in the fields sidebar under interesting Fields?",
+      "answer": "index",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 27
+    },
+    {
+      "card": 28,
+      "question": "Which of the following statements about case sensitivity is true?",
+      "answer": "Field names ARE case sensitive; field values are NOT.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 28
+    },
+    {
+      "card": 29,
+      "question": "What does the rare command do?",
+      "answer": "Returns the least common field values of a given field in the results.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 29
+    },
+    {
+      "card": 30,
+      "question": "When an alert action is configured to run a script, Splunk must be able to locate the script. Which is on of the directories Splunk will look in to find the script?",
+      "answer": "$SPLUNK_HOME/bin/scripts",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 30
+    },
+    {
+      "card": 31,
+      "question": "Which Boolean operator is always implied between two search terms, unless otherwise specified?",
+      "answer": "AND",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 31
+    },
+    {
+      "card": 32,
+      "question": "What does the values function of the stats command do?",
+      "answer": "Lists unique values of a given field.",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 32
+    },
+    {
+      "card": 33,
+      "question": "Which stats command function provides a count of how many unique values exist for a given field in the result set?",
+      "answer": "dc(field)",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 33
+    },
+    {
+      "card": 34,
+      "question": "A collection of items containing things such as data inputs, UI elements, and knowledge objects is known as what?",
+      "answer": "An app",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 34
+    },
+    {
+      "card": 35,
+      "question": "Which statement is true about Splunk alerts?",
+      "answer": "Alerts are based on searches that are either run on a scheduled interval or in real-time.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 35
+    },
+    {
+      "card": 36,
+      "question": "What is the purpose of using a by clause with the stats command?",
+      "answer": "To group the results by one or more fields.",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 36
+    },
+    {
+      "card": 37,
+      "question": "How do you add or remove fields from search results?",
+      "answer": "Use fields + to add and fields - to remove.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 37
+    },
+    {
+      "card": 38,
+      "question": "A field exists in search results, but isn't being displayed in the fields sidebar. How can it be added to the fields sidebar?",
+      "answer": "Click All Fields and select the field to add it to Selected Fields.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 38
+    },
+    {
+      "card": 39,
+      "question": "In the fields sidebar, which character denotes alphanumeric field values?",
+      "answer": "a",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 39
+    },
+    {
+      "card": 40,
+      "question": "What is the main requirement for creating visualizations using the Splunk UI?",
+      "answer": "Your search must transform event data into statistical data tables first.",
+      "hint": null,
+      "topic": "Visualizations",
+      "source": "Power User exam bank",
+      "exam_number": 40
+    },
+    {
+      "card": 41,
+      "question": "What user interface component allows for time selection?",
+      "answer": "Time range picker",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 41
+    },
+    {
+      "card": 42,
+      "question": "Which of the following searches will return results where fail, 400, and error exist in every event?",
+      "answer": "error AND (fail AND 400)",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 42
+    },
+    {
+      "card": 43,
+      "question": "When placed early in a search, which command is most effective at reducing search execution time?",
+      "answer": "fields +",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 43
+    },
+    {
+      "card": 44,
+      "question": "Which of the following is the most efficient filter for running searches in Splunk?",
+      "answer": "Time",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 44
+    },
+    {
+      "card": 45,
+      "question": "How does Splunk determine which fields to extract from data?",
+      "answer": "Splunk automatically discovers many fields based on sourcetype and key/value pairs found in the data.",
+      "hint": null,
+      "topic": "Visualizations",
+      "source": "Power User exam bank",
+      "exam_number": 45
+    },
+    {
+      "card": 46,
+      "question": "Which of the following file types is an option for exporting Splunk search results?",
+      "answer": "JSON",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 46
+    },
+    {
+      "card": 47,
+      "question": "What syntax is used to link key/value pairs in search strings?",
+      "answer": "Relational operators such as =, < or >",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 47
+    },
+    {
+      "card": 48,
+      "question": "Which search string returns a field containing the number of matching events and names that field Amount of Events?",
+      "answer": "index=security failure | stats count as \"Amount of Events\"",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 48
+    },
+    {
+      "card": 49,
+      "question": "Which search would return events from the access_combined sourcetype?",
+      "answer": "sourcetype=Access_Combined",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 49
+    },
+    {
+      "card": 50,
+      "question": "Which of the following index searches would provide the most efficient search performance?",
+      "answer": "(index=web OR index=sales)",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 50
+    },
+    {
+      "card": 51,
+      "question": "What is a suggested Splunk best practice for naming reports?",
+      "answer": "Use a consistent naming convention so they are easily separated by characteristics such as group and object.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 51
+    },
+    {
+      "card": 52,
+      "question": "In a deployment with multiple indexes, what will happen when a search is run and an index is not specified in the search string?",
+      "answer": "Events from every index searched by default to which the user has access will be returned.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 52
+    },
+    {
+      "card": 53,
+      "question": "When viewing the results of a search, what is an Interesting Field?",
+      "answer": "A field that appears in at least 20% of the events.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 53
+    },
+    {
+      "card": 54,
+      "question": "When a Splunk search generates calculated data that appears in the Statistics tab, in what formats can the results be exported?",
+      "answer": "CSV, XML, JSON",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 54
+    },
+    {
+      "card": 55,
+      "question": "Which search matches the events containing the terms \"error\" and \"fail\"?",
+      "answer": "index=security Error Fail",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 55
+    },
+    {
+      "card": 56,
+      "question": "Which of the following is an option after clicking an item in search results?",
+      "answer": "Adding the item to the search.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 56
+    },
+    {
+      "card": 57,
+      "question": "Which of the following fields is stored with the events in the index?",
+      "answer": "source",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 57
+    },
+    {
+      "card": 58,
+      "question": "Which of the following is the recommended way to create multiple dashboards displaying data from th same search?",
+      "answer": "Save the search as a report and use it in multiple dashboards as needed.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 58
+    },
+    {
+      "card": 59,
+      "question": "What does the following time range do? earliest=-72h@h latest=@d",
+      "answer": "Look back from 3 days ago, up to the beginning of today.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 59
+    },
+    {
+      "card": 60,
+      "question": "Which events will be returned by the following search string? host=www3 status=503",
+      "answer": "All events with a host of www3 that also have a status of 503.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 60
+    },
+    {
+      "card": 61,
+      "question": "What does the stats command do?",
+      "answer": "Calculates statistics on data that matches the search criteria.",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 61
+    },
+    {
+      "card": 62,
+      "question": "Which is a primary function of the timeline located under the search bar?",
+      "answer": "To show peaks and/or valleys in the timeline, which can indicate spikes in activity or downtime.",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 62
+    },
+    {
+      "card": 63,
+      "question": "What can be configured using the Edit Job Settings menu?",
+      "answer": "Change Job Lifetime from 10 minutes to 7 days.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 63
+    },
+    {
+      "card": 64,
+      "question": "Which command is used to validate a lookup file?",
+      "answer": "| inputlookup products.csv",
+      "hint": null,
+      "topic": "Lookups",
+      "source": "Power User exam bank",
+      "exam_number": 64
+    },
+    {
+      "card": 65,
+      "question": "Which statement is true about the top command?",
+      "answer": "All of the above.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 65
+    },
+    {
+      "card": 66,
+      "question": "How can another user gain access to a saved report?",
+      "answer": "The owner of the report can edit permissions from the Edit dropdown.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 66
+    },
+    {
+      "card": 67,
+      "question": "What is the primary use for the rare command?",
+      "answer": "To find the least common values of a field in a dataset.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Power User exam bank",
+      "exam_number": 67
+    },
+    {
+      "card": 68,
+      "question": "What happens when a field is added to the Selected Fields list in the fields sidebar?",
+      "answer": "The selected field and its corresponding values will appear underneath the events in the search results.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 68
+    },
+    {
+      "card": 69,
+      "question": "By default, which of the following is a Selected Field?",
+      "answer": "sourcetype",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 69
+    },
+    {
+      "card": 70,
+      "question": "According to Splunk best practices, which placement of the wildcard results in the most efficient search?",
+      "answer": "fail*",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 70
+    },
+    {
+      "card": 71,
+      "question": "Which command automatically returns percent and count columns when executing searches?",
+      "answer": "top",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 71
+    },
+    {
+      "card": 72,
+      "question": "Which of the following describes lookup files?",
+      "answer": "Lookups add more fields to results returned by a search.",
+      "hint": null,
+      "topic": "Lookups",
+      "source": "Power User exam bank",
+      "exam_number": 72
+    },
+    {
+      "card": 73,
+      "question": "Which search string is the most efficient?",
+      "answer": "index=security \"failed password\"",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 73
+    },
+    {
+      "card": 74,
+      "question": "Which search string matches only events with the status_code of 404?",
+      "answer": "status_code>403 status_code<405",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 74
+    },
+    {
+      "card": 75,
+      "question": "In the Fields sidebar, what does the number directly to the right of the field name indicate?",
+      "answer": "The number of unique values for the field.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 77
+    },
+    {
+      "card": 76,
+      "question": "Which of the following is the best way to create a report that shows the last 24 hours of the events?",
+      "answer": "Use the time range picker to select \"Last 24 hours\".",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 78
+    },
+    {
+      "card": 77,
+      "question": "When is an alert triggered?",
+      "answer": "When results of a search meet a specifically defined condition.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Power User exam bank",
+      "exam_number": 79
+    },
+    {
+      "card": 78,
+      "question": "Which search will return the 15 least common field values for the dest_ip field?",
+      "answer": "sourcetype=firewall | rare limit=15 dest_ip",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 80
+    },
+    {
+      "card": 79,
+      "question": "Which Field/Value pair will return only events found in the index named security?",
+      "answer": "index=Security",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 81
+    },
+    {
+      "card": 80,
+      "question": "When is the pipe character, |, used in search strings?",
+      "answer": "Before commands. For example: |stats sum(bytes) by host",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 82
+    },
+    {
+      "card": 81,
+      "question": "What are the three main Splunk components?",
+      "answer": "Search head, indexer, forwarder",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 83
+    },
+    {
+      "card": 82,
+      "question": "How can results from a specified static lookup file be displayed?",
+      "answer": "inputlookup command",
+      "hint": null,
+      "topic": "Lookups",
+      "source": "Power User exam bank",
+      "exam_number": 84
+    },
+    {
+      "card": 83,
+      "question": "Which statement describes field discovery at search time?",
+      "answer": "Splunk automatically discovers only fields directly related to the search results.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 85
+    },
+    {
+      "card": 84,
+      "question": "Which of the following is a metadata field assigned to every event in Splunk?",
+      "answer": "host",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 86
+    },
+    {
+      "card": 85,
+      "question": "What are the two most efficient search filters?",
+      "answer": "_time and index",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 87
+    },
+    {
+      "card": 86,
+      "question": "Assuming a user has the capability to edit reports, which of the following are editable?",
+      "answer": "Acceleration, schedule, permissions.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 88
+    },
+    {
+      "card": 87,
+      "question": "Which of the following reports is available in the fields window?",
+      "answer": "Top values by time.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 89
+    },
+    {
+      "card": 88,
+      "question": "What is a quick, comprehensive way to learn what data is present in a Splunk deployment?",
+      "answer": "Click Data Summary in Splunk Web",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 90
+    },
+    {
+      "card": 89,
+      "question": "When refining search results, what is the difference in the time picker between real-time and relative time ranges?",
+      "answer": "Real time searches display results from a rolling time window, while relative searches display results from a set length of time.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 91
+    },
+    {
+      "card": 90,
+      "question": "Which of the following is an accurate definition of a field within Splunk?",
+      "answer": "A searchable key/value pair in event data.",
+      "hint": null,
+      "topic": "Lookups",
+      "source": "Power User exam bank",
+      "exam_number": 92
+    },
+    {
+      "card": 91,
+      "question": "Which of the following need to be specified when utilizing the lookup command in search?",
+      "answer": "Table name and field",
+      "hint": null,
+      "topic": "Lookups",
+      "source": "Power User exam bank",
+      "exam_number": 93
+    },
+    {
+      "card": 92,
+      "question": "Which of the following is a false statement about Splunk dashboards?",
+      "answer": "Splunk dashboards may not be directly created from search results without first creating a report.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 94
+    },
+    {
+      "card": 93,
+      "question": "When viewing results of a search job from the Activity menu, which of the following is displayed?",
+      "answer": "The same events from when the original search was executed.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 95
+    },
+    {
+      "card": 94,
+      "question": "Which steps do you need to take in order to be able to create a report with line chart content?",
+      "answer": "1. Create a search 2. Select the Visualization tab 3. Click Save As > Report 4. Select a Line Chart as the content",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 96
+    },
+    {
+      "card": 95,
+      "question": "Given the following SPL search, how many rows of results would you expect to be returned by default index=security sourcetype=linux_secure (fail* OR invalid) | top src_ip",
+      "answer": "10",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 97
+    },
+    {
+      "card": 96,
+      "question": "What are Splunk alerts based on?",
+      "answer": "Searches",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 98
+    },
+    {
+      "card": 97,
+      "question": "Which of the following is the appropriately formatted SPL search?",
+      "answer": "index=security sourcetype=linux_secure (invalid OR failed) | stats count as \"Potential Issues\"",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 99
+    },
+    {
+      "card": 98,
+      "question": "By default, which role contains the minimum permissions required to have write access to Splunk alerts?",
+      "answer": "Power",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 100
+    },
+    {
+      "card": 99,
+      "question": "Which of the following is the best description of a Splunk App?",
+      "answer": "A collection of files",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 101
+    },
+    {
+      "card": 100,
+      "question": "A SOC manager is complaining that a scheduled alert for failed login attempts triggered 150 emails. They still want to be alerted of failed logins via email, but they want less volume of alerts. Which of the following would resolve this for the SOC manager?",
+      "answer": "Change the trigger from \u201cFor each result\u201d to \u201cOnce\u201d",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 102
+    },
+    {
+      "card": 101,
+      "question": "In the search and Reporting app, which is a default selected field?",
+      "answer": "host",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 103
+    },
+    {
+      "card": 102,
+      "question": "Which one of the following statements about the search command is true?",
+      "answer": "It behaves exactly like search strings before the first pipe.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 104
+    },
+    {
+      "card": 103,
+      "question": "Which of the following actions can the eval command perform?",
+      "answer": "Create or replace an existing field.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Power User exam bank",
+      "exam_number": 105
+    },
+    {
+      "card": 104,
+      "question": "When can a pipe follow a macro?",
+      "answer": "A pipe may always follow a macro.",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Power User exam bank",
+      "exam_number": 106
+    },
+    {
+      "card": 105,
+      "question": "A data model consists of which three types of datasets?",
+      "answer": "Events, searches, transactions.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Power User exam bank",
+      "exam_number": 109
+    },
+    {
+      "card": 106,
+      "question": "Where are the results of eval commands stored?",
+      "answer": "In a field.",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Power User exam bank",
+      "exam_number": 110
+    },
+    {
+      "card": 107,
+      "question": "When should transaction be used?",
+      "answer": "When event grouping is based on start/end values.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Power User exam bank",
+      "exam_number": 112
+    },
+    {
+      "card": 108,
+      "question": "When performing a regular expression (regex) field extraction using the Field Extractor (FX), what happens when the require option is used?",
+      "answer": "Only events with the required string will be included in the extraction.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Power User exam bank",
+      "exam_number": 113
+    },
+    {
+      "card": 109,
+      "question": "Which of the following is the correct way to use the datamodel command to search fields in the Web data model within the Web dataset?",
+      "answer": "| datamodel Web Web search | fields Web*",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Power User exam bank",
+      "exam_number": 114
+    },
+    {
+      "card": 110,
+      "question": "Which of the following searches will return events containing a tag named Privileged?",
+      "answer": "tag=Priv*",
+      "hint": null,
+      "topic": "Event Types & Tags",
+      "source": "Power User exam bank",
+      "exam_number": 116
+    },
+    {
+      "card": 111,
+      "question": "Given the macro definition below, what should be entered into the Name and Arguments fields to correctly configure the macro? Definition: sourcetype=access_combined action=$action$ JSESSIONID=$JSESSIONID$ | stats values(action) as action by JSESSIONID",
+      "answer": "The macro name is sessiontracker(2) and the arguments are action, JSESSIONID.",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Power User exam bank",
+      "exam_number": 117
+    },
+    {
+      "card": 112,
+      "question": "What is required for a macro to accept three arguments?",
+      "answer": "The macro's name ends with (3).",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Power User exam bank",
+      "exam_number": 118
+    },
+    {
+      "card": 113,
+      "question": "A user wants to convert numeric field values to strings and also to sort on those values. Which command should be used first, eval or sort?",
+      "answer": "Use sort first, then convert the numeric to a string with eval.",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Power User exam bank",
+      "exam_number": 124
+    },
+    {
+      "card": 114,
+      "question": "How does a user display a chart in stack mode?",
+      "answer": "By changing Stack Mode in the Format menu.",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 127
+    },
+    {
+      "card": 115,
+      "question": "What other syntax will produce exactly the same results as | chart count over vendor_action by user?",
+      "answer": "| chart count by vendor_action, user",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 128
+    },
+    {
+      "card": 116,
+      "question": "What are the two parts of a root event dataset?",
+      "answer": "Constraints and fields.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Power User exam bank",
+      "exam_number": 129
+    },
+    {
+      "card": 117,
+      "question": "When using timechart, how many fields can be listed after a by clause?",
+      "answer": "1, because _time is already implied as the x-axis.",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 130
+    },
+    {
+      "card": 118,
+      "question": "A field alias has been created based on an original field. A search without any transforming commands is then run in Smart Mode. Which field name appears in the results?",
+      "answer": "Both will appear in the Interesting Fields list, but only if they appear in at least 20 percent of events.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Power User exam bank",
+      "exam_number": 131
+    },
+    {
+      "card": 119,
+      "question": "Which of the following statements describes macros?",
+      "answer": "A macro is a reusable search string that may have a flexible time range.",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Power User exam bank",
+      "exam_number": 132
+    },
+    {
+      "card": 120,
+      "question": "In what order are the following knowledge objects/configurations applied?",
+      "answer": "Field Extractions, Field Aliases, Lookups",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Power User exam bank",
+      "exam_number": 133
+    },
+    {
+      "card": 121,
+      "question": "In which of the following scenarios is an event type more effective than a saved search?",
+      "answer": "When the search string needs to be used in future searches.",
+      "hint": null,
+      "topic": "Event Types & Tags",
+      "source": "Power User exam bank",
+      "exam_number": 134
+    },
+    {
+      "card": 122,
+      "question": "When using the transaction command, what does the argument maxspan do?",
+      "answer": "Sets the maximum total time between the earliest and latest events in a transaction.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Power User exam bank",
+      "exam_number": 135
+    },
+    {
+      "card": 123,
+      "question": "When creating a Search workflow action, which field is required?",
+      "answer": "Search string",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Power User exam bank",
+      "exam_number": 136
+    },
+    {
+      "card": 124,
+      "question": "To identify all of the contributing events within a transaction that contain at least one REJECT event, which syntax is correct?",
+      "answer": "index=main | transaction sessionid | search REJECT",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Power User exam bank",
+      "exam_number": 137
+    },
+    {
+      "card": 125,
+      "question": "After manually editing a regular expression (regex), which of the following statements is true?",
+      "answer": "It is no longer possible to edit the field extraction in the Field Extractor (FX) UI.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Power User exam bank",
+      "exam_number": 138
+    },
+    {
+      "card": 126,
+      "question": "Which of the following statements describes POST workflow actions?",
+      "answer": "POST workflow actions can be configured to send POST arguments to the URI location.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Power User exam bank",
+      "exam_number": 139
+    },
+    {
+      "card": 127,
+      "question": "Which of the following statements is true, especially in large environments?",
+      "answer": "The stats command is faster and more efficient than the transaction command.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Power User exam bank",
+      "exam_number": 140
+    },
+    {
+      "card": 128,
+      "question": "What does the following search do? index=corndog type=mysterymeat action=eaten | stats count as corndog_count by user",
+      "answer": "Creates a table of the total count of mysterymeat corndogs eaten, split by user.",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 141
+    },
+    {
+      "card": 129,
+      "question": "Which of the following statements describes the search string below? | datamodel Application_State All_Application_State search",
+      "answer": "Events will be returned from the data model named Application_State.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Power User exam bank",
+      "exam_number": 144
+    },
+    {
+      "card": 130,
+      "question": "What is the correct syntax to search for a tag associated with a value on a specific field?",
+      "answer": "tag::<field>=<tagname>",
+      "hint": null,
+      "topic": "Event Types & Tags",
+      "source": "Power User exam bank",
+      "exam_number": 145
+    },
+    {
+      "card": 131,
+      "question": "In most large Splunk environments, what is the most efficient command that can be used to group events by fields?",
+      "answer": "stats",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Power User exam bank",
+      "exam_number": 146
+    },
+    {
+      "card": 132,
+      "question": "Which workflow uses field values to perform a secondary search?",
+      "answer": "Search",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 147
+    },
+    {
+      "card": 133,
+      "question": "Which of the following statements describes field aliases?",
+      "answer": "Field aliases can be used in lookup file definitions.",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Power User exam bank",
+      "exam_number": 148
+    },
+    {
+      "card": 134,
+      "question": "Which statement is true?",
+      "answer": "Pivot is used for creating reports and dashboards.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Power User exam bank",
+      "exam_number": 149
+    },
+    {
+      "card": 135,
+      "question": "Which of the following statements describes the use of the Field Extractor (FX)?",
+      "answer": "Fields extracted using the Field Extractor persist as knowledge objects.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Power User exam bank",
+      "exam_number": 150
+    },
+    {
+      "card": 136,
+      "question": "Which of the following searches would return a report of sales by product_name?",
+      "answer": "chart sum(price) as sales by product_name",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 151
+    },
+    {
+      "card": 137,
+      "question": "What is a limitation of searches generated by workflow actions?",
+      "answer": "Searches generated by workflow actions run with the same permissions as the user running them.",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Power User exam bank",
+      "exam_number": 153
+    },
+    {
+      "card": 138,
+      "question": "Which of the following is a function of the Splunk Common Information Model (CIM)?",
+      "answer": "Normalizing data across a Splunk deployment.",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Power User exam bank",
+      "exam_number": 154
+    },
+    {
+      "card": 139,
+      "question": "What information must be included when using the datamodel command?",
+      "answer": "Data model dataset name.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Power User exam bank",
+      "exam_number": 155
+    },
+    {
+      "card": 140,
+      "question": "Which of the following eval command functions is valid?",
+      "answer": "tostring()",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Power User exam bank",
+      "exam_number": 157
+    },
+    {
+      "card": 141,
+      "question": "A calculated field may be based on which of the following?",
+      "answer": "Extracted fields",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Power User exam bank",
+      "exam_number": 158
+    },
+    {
+      "card": 142,
+      "question": "A data model can consist of what three types of datasets?",
+      "answer": "Events, searches, and transactions.",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Power User exam bank",
+      "exam_number": 159
+    },
+    {
+      "card": 143,
+      "question": "When is a GET workflow action needed?",
+      "answer": "To retrieve information from an external resource.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Power User exam bank",
+      "exam_number": 160
+    },
+    {
+      "card": 144,
+      "question": "Which of the following statements describes GET workflow actions?",
+      "answer": "GET workflow actions can be configured to open the URI link in the current window or in a new window.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Power User exam bank",
+      "exam_number": 161
+    },
+    {
+      "card": 145,
+      "question": "Which command can include both an over and a by clause to divide results into sub-groupings?",
+      "answer": "chart",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Power User exam bank",
+      "exam_number": 163
+    },
+    {
+      "card": 146,
+      "question": "When should you use the transaction command instead of the stats command?",
+      "answer": "When you need to group based on start and end constraints.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Power User exam bank",
+      "exam_number": 164
+    },
+    {
+      "card": 147,
+      "question": "Which of the following statements about tags is true?",
+      "answer": "Tags can make your data more understandable.",
+      "hint": null,
+      "topic": "Event Types & Tags",
+      "source": "Power User exam bank",
+      "exam_number": 166
+    },
+    {
+      "card": 148,
+      "question": "Which of the following file formats can be extracted using a delimiter field extraction?",
+      "answer": "CSV",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Power User exam bank",
+      "exam_number": 167
+    },
+    {
+      "card": 149,
+      "question": "A user wants to create a new field alias for a field that appears in two sourcetypes. How many field aliases need to be created?",
+      "answer": "Two.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Power User exam bank",
+      "exam_number": 168
+    },
+    {
+      "card": 150,
+      "question": "In the following eval statement, what is the value of description if the status is 503? index=main | eval description=case(status==200, \"OK\", status==404, \"Not found\", status==500, \"Internal Server Error\")",
+      "answer": "The description field would contain no value.",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Power User exam bank",
+      "exam_number": 169
+    },
+    {
+      "card": 151,
+      "question": "In which Settings section are macros defined?",
+      "answer": "Advanced Search",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Power User exam bank",
+      "exam_number": 170
+    },
+    {
+      "card": 152,
+      "question": "Which of the following statements describes calculated fields?",
+      "answer": "Calculated fields are a shortcut for repetitive and complex eval commands.",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Power User exam bank",
+      "exam_number": 171
+    },
+    {
+      "card": 153,
+      "question": "Which of the following are required to create a POST workflow action?",
+      "answer": "Label, URI, post arguments.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Power User exam bank",
+      "exam_number": 172
+    },
+    {
+      "card": 154,
+      "question": "Which of the following is one of the pre-configured data models included in the Splunk Common Information Model (CIM) add-on?",
+      "answer": "Authentication",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Power User exam bank",
+      "exam_number": 173
+    },
+    {
+      "card": 155,
+      "question": "Consider the following search: index=web sourcetype=access_combined The log shows several events that share the same JSESSIONID value (SD421K26502F783). View the events as a group. Which search groups events by JSESSIONID?",
+      "answer": "index=web sourcetype=access_combined | transaction JSESSIONID | search SD421K26502F783",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Power User exam bank",
+      "exam_number": 175
+    },
+    {
+      "card": 156,
+      "question": "When defining a macro, what are the required elements?",
+      "answer": "Name and definition.",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Power User exam bank",
+      "exam_number": 176
+    },
+    {
+      "card": 157,
+      "question": "Where are the descriptions of the data models that come with the Splunk Common Information Model (CIM) Add-on documented?",
+      "answer": "CIM Add-on manual.",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Power User exam bank",
+      "exam_number": 177
+    },
+    {
+      "card": 158,
+      "question": "What is the correct syntax to find events associated with a tag?",
+      "answer": "tag=<value>",
+      "hint": null,
+      "topic": "Event Types & Tags",
+      "source": "Power User exam bank",
+      "exam_number": 178
+    },
+    {
+      "card": 159,
+      "question": "Which of the following is true about the Splunk Common Information Model (CIM)?",
+      "answer": "The data models included in the CIM are configured with data model acceleration turned off.",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Power User exam bank",
+      "exam_number": 179
+    },
+    {
+      "card": 160,
+      "question": "Consider the following search, run over the last 7 days: index=web sourcetype=access_combined | timechart avg(bytes) by product_name Which option changes the default time span so that results are grouped into 12-hour intervals?",
+      "answer": "span=12h",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 180
+    },
+    {
+      "card": 161,
+      "question": "When would transaction be used instead of stats?",
+      "answer": "To group events based on start/end values.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Power User exam bank",
+      "exam_number": 181
+    },
+    {
+      "card": 162,
+      "question": "Given the following eval statement: ... | eval field1=if(isnotnull(field1), field1, 0), field2=if(isnull(field2), \"NO-VALUE\", field2) Which of the following is the equivalent using fillnull?",
+      "answer": "... | fillnull field1 | fillnull value=\"NO-VALUE\" field2",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Power User exam bank",
+      "exam_number": 182
+    },
+    {
+      "card": 163,
+      "question": "The Splunk Common Information Model (CIM) is a collection of what type of knowledge object?",
+      "answer": "Data models",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Power User exam bank",
+      "exam_number": 183
+    },
+    {
+      "card": 164,
+      "question": "How is a Search Workflow Action configured to run at the same time range as the original search?",
+      "answer": "Select the \"Use the same time range as the search that created the field listing\" checkbox.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Power User exam bank",
+      "exam_number": 184
+    },
+    {
+      "card": 165,
+      "question": "A calculated field is a shortcut for performing repetitive, long, or complex transformations using which of the following commands?",
+      "answer": "eval",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Power User exam bank",
+      "exam_number": 185
+    },
+    {
+      "card": 166,
+      "question": "When using the transaction command, how are evicted transactions identified?",
+      "answer": "closed_txn field is set to 0, or false.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Power User exam bank",
+      "exam_number": 186
+    },
+    {
+      "card": 167,
+      "question": "How are arguments defined within the macro search string?",
+      "answer": "$arg$",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Power User exam bank",
+      "exam_number": 187
+    },
+    {
+      "card": 168,
+      "question": "Which of the following objects can a calculated field use as a source?",
+      "answer": "An alias of a field.",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Power User exam bank",
+      "exam_number": 188
+    },
+    {
+      "card": 169,
+      "question": "How are event types different from saved reports?",
+      "answer": "Event types do not include a time range.",
+      "hint": null,
+      "topic": "Event Types & Tags",
+      "source": "Power User exam bank",
+      "exam_number": 189
+    },
+    {
+      "card": 170,
+      "question": "When creating a data model, which root dataset requires at least one constraint?",
+      "answer": "Root event dataset",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Power User exam bank",
+      "exam_number": 190
+    },
+    {
+      "card": 171,
+      "question": "Which search retrieves events with the event type web_errors?",
+      "answer": "eventtype=web_errors",
+      "hint": null,
+      "topic": "Event Types & Tags",
+      "source": "Power User exam bank",
+      "exam_number": 191
+    },
+    {
+      "card": 172,
+      "question": "When used with the timechart command, which value of the limit argument returns all values?",
+      "answer": "limit=0",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 192
+    },
+    {
+      "card": 173,
+      "question": "Which of the following statements best describes a macro?",
+      "answer": "A macro is a portion of a search that can be reused in multiple places.",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Power User exam bank",
+      "exam_number": 193
+    },
+    {
+      "card": 174,
+      "question": "The macro weekly_sales(2) contains the search string: index=games | eval ProductSales = $Price$ * $AmountSold$ Which of the following will return results?",
+      "answer": "weekly_sales(3.99, 10)",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Power User exam bank",
+      "exam_number": 194
+    },
+    {
+      "card": 175,
+      "question": "What happens when a user edits the regular expression (regex) field extraction generated in the Field Extractor (FX)?",
+      "answer": "The user is unable to return to the automatic field extraction workflow.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Power User exam bank",
+      "exam_number": 195
+    },
+    {
+      "card": 176,
+      "question": "What does the fillnull command replace null values with, if the value argument is not specified?",
+      "answer": "0",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Power User exam bank",
+      "exam_number": 196
+    },
+    {
+      "card": 177,
+      "question": "What is the correct syntax for the transaction command?",
+      "answer": "| transaction clientip maxspan=5m maxpause=1m",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Power User exam bank",
+      "exam_number": 197
+    },
+    {
+      "card": 178,
+      "question": "What is the Splunk Common Information Model (CIM)?",
+      "answer": "The CIM provides a methodology to normalize data from different sources and source types.",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Power User exam bank",
+      "exam_number": 198
+    },
+    {
+      "card": 179,
+      "question": "For the following search, which field populates the x-axis? index=security sourcetype=linux_secure | timechart count by action",
+      "answer": "_time",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 199
+    },
+    {
+      "card": 180,
+      "question": "Which knowledge object is used to normalize field names to comply with the Splunk Common Information Model (CIM)?",
+      "answer": "Field alias",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Power User exam bank",
+      "exam_number": 200
+    },
+    {
+      "card": 181,
+      "question": "Which of the following transforming commands can be used with transactions?",
+      "answer": "chart, timechart, stats, eventstats",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Power User exam bank",
+      "exam_number": 201
+    },
+    {
+      "card": 182,
+      "question": "What is the correct format for naming a macro with multiple arguments?",
+      "answer": "monthly_sales(3)",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Power User exam bank",
+      "exam_number": 202
+    },
+    {
+      "card": 183,
+      "question": "What are search macros?",
+      "answer": "Reusable pieces of search processing language.",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Power User exam bank",
+      "exam_number": 203
+    },
+    {
+      "card": 184,
+      "question": "How is a macro referenced in a search?",
+      "answer": "By enclosing the macro name in backtick characters (`).",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Power User exam bank",
+      "exam_number": 204
+    },
+    {
+      "card": 185,
+      "question": "Which of the following statements describes POST workflow actions?",
+      "answer": "POST workflow actions can open a web page in either the same window or a new window.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Power User exam bank",
+      "exam_number": 205
+    },
+    {
+      "card": 186,
+      "question": "What is the purpose of a calculated field?",
+      "answer": "To automatically add fields at search time using an eval expression rather than manually including an eval command.",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Power User exam bank",
+      "exam_number": 206
+    },
+    {
+      "card": 187,
+      "question": "When creating a search workflow action, what character(s) are used as a placeholder for field values in the search string?",
+      "answer": "$",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Power User exam bank",
+      "exam_number": 207
+    },
+    {
+      "card": 188,
+      "question": "What field delimiter should be used for the event below? 2023-10-25:11:30:00.000 Logout john.doe Chromium splunk.com",
+      "answer": "space",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Power User exam bank",
+      "exam_number": 208
+    },
+    {
+      "card": 189,
+      "question": "Which of the following is a use for a POST workflow action?",
+      "answer": "Submit a ticket in a ticketing system.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Power User exam bank",
+      "exam_number": 209
+    },
+    {
+      "card": 190,
+      "question": "Ben created a macro named airport_code_translator(2). His coworker, Alice, wants to use the macro to find the name of a nearby airport. Which of the following search strings will return the results that Alice needs?",
+      "answer": "`airport_code_translator(LAX, English)`",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Power User exam bank",
+      "exam_number": 210
+    },
+    {
+      "card": 191,
+      "question": "Which of the following describes the transaction command?",
+      "answer": "It is an SPL command that groups events together with shared values in selected fields.",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Power User exam bank",
+      "exam_number": 211
+    },
+    {
+      "card": 192,
+      "question": "When using the timechart command, what optional argument is used to specify the interval of _time?",
+      "answer": "span",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 212
+    },
+    {
+      "card": 193,
+      "question": "What does the fillnull command do in this search? index=main sourcetype=http:log | fillnull value=\"Unknown\" src",
+      "answer": "Set the values of the src field to \"Unknown\" if it is null.",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Power User exam bank",
+      "exam_number": 213
+    },
+    {
+      "card": 194,
+      "question": "How are variables passed in URIs for POST actions?",
+      "answer": "URL encoded",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 214
+    },
+    {
+      "card": 195,
+      "question": "Which of these stats commands will show the total bytes for each unique combination of page and server?",
+      "answer": "index=web | stats sum(bytes) BY page server",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 215
+    },
+    {
+      "card": 196,
+      "question": "What is the correct Boolean order of evaluation for the where command from first to last?",
+      "answer": "Parentheses, NOT, AND, OR",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 216
+    },
+    {
+      "card": 197,
+      "question": "A POST workflow action will pass which types of arguments to an external website?",
+      "answer": "A mix of clear text strings and variables.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Power User exam bank",
+      "exam_number": 217
+    },
+    {
+      "card": 198,
+      "question": "A Splunk app is configured to extract domain names in web service logs and specify them as a field named domain. What workflow action would return an external IP lookup for the field named domain?",
+      "answer": "GET",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Power User exam bank",
+      "exam_number": 218
+    },
+    {
+      "card": 199,
+      "question": "What needs to be configured in order to normalize data using the Splunk Common Information Model (CIM) Add-On?",
+      "answer": "Configure event types that reference the appropriate tags.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Power User exam bank",
+      "exam_number": 219
+    },
+    {
+      "card": 200,
+      "question": "Which of the following eval commands will provide a new value for host from src if it exists?",
+      "answer": "| eval host = if(isnotnull(src), src, host)",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Power User exam bank",
+      "exam_number": 220
+    },
+    {
+      "card": 201,
+      "question": "Which syntax is used to represent an argument in a macro definition?",
+      "answer": "$argument$",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Power User exam bank",
+      "exam_number": 221
+    },
+    {
+      "card": 202,
+      "question": "Which method in the Field Extractor would extract the port number from the following event? 10/20/2022 - 125.24.20.1 ++++ port 54 - user: admin <web error>",
+      "answer": "Regular expression",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Power User exam bank",
+      "exam_number": 222
+    },
+    {
+      "card": 203,
+      "question": "Which command should be used to populate missing values in the following table? City | Country | SalesTerritory Cairo | Egypt | (empty) Dallas | United States | North America Toronto | Canada | (empty) Tijuana | Mexico | North America",
+      "answer": "| fillnull value=\"Unassigned\"",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Power User exam bank",
+      "exam_number": 223
+    },
+    {
+      "card": 204,
+      "question": "Which of the following objects can a calculated field reference?",
+      "answer": "Extracted field",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Power User exam bank",
+      "exam_number": 224
+    },
+    {
+      "card": 205,
+      "question": "Which of the following does not describe how to create an event type?",
+      "answer": "Use the Field Extractor to analyze and use the Save As button.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Power User exam bank",
+      "exam_number": 225
+    },
+    {
+      "card": 206,
+      "question": "Which tool uses data models to generate reports and dashboard panels without using SPL?",
+      "answer": "Pivot",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Power User exam bank",
+      "exam_number": 226
+    },
+    {
+      "card": 207,
+      "question": "A user wants to create a workflow action that will retrieve a specific field value from an event and run a search in a new browser window in the user's Splunk instance. What kind of workflow action should they create?",
+      "answer": "A Search workflow action, because the user is running a new search with a specific field value from an event returned in the user's search.",
+      "hint": null,
+      "topic": "Workflow Actions",
+      "source": "Power User exam bank",
+      "exam_number": 227
+    },
+    {
+      "card": 208,
+      "question": "When using the eval command, which of these characters can be used to concatenate a string and a number into a single value?",
+      "answer": ". (period)",
+      "hint": null,
+      "topic": "Eval & Calculated Fields",
+      "source": "Power User exam bank",
+      "exam_number": 228
+    },
+    {
+      "card": 209,
+      "question": "Which of the following commands connects an additional table of data directly to the right side of the existing table?",
+      "answer": "appendcols",
+      "hint": null,
+      "topic": "Stats & Charts",
+      "source": "Power User exam bank",
+      "exam_number": 229
+    },
+    {
+      "card": 210,
+      "question": "Which of the following definitions describes a macro named \"samplemacro\" that accepts two arguments?",
+      "answer": "samplemacro(2)",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Power User exam bank",
+      "exam_number": 230
+    },
+    {
+      "card": 211,
+      "question": "Which wildcard would a user specify to match on multiple characters when using the where command?",
+      "answer": "%",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 231
+    },
+    {
+      "card": 212,
+      "question": "Brad created a tag called \"SpecialProjectX\". It is associated with several field/value pairs, such as team=support, location=Austin, and release=Fuj. What search should Brad run to filter results for SpecialProjectX events related to the Support Team?",
+      "answer": "tag::team=SpecialProjectX",
+      "hint": null,
+      "topic": "Event Types & Tags",
+      "source": "Power User exam bank",
+      "exam_number": 232
+    },
+    {
+      "card": 213,
+      "question": "What are the expected search results from running the following SPL? index=network NOT StatusCode=200",
+      "answer": "Every event in the network index that does not contain a StatusCode of 200, including events that do not have a value in this field.",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 233
+    },
+    {
+      "card": 214,
+      "question": "What is the most effective way to extract username and IP address fields from the following events? May 1 16:17:02 server01 CRON[9548]: pam_unix(cron:session): session opened for user root May 1 16:17:43 server01 sshd[9617]: Accepted publickey for root from 192.168.0.101 port 37193 ssh2 May 1 16:17:43 server01 sshd[9617]: pam_unix(sshd:session): session opened for user root by (uid=0)",
+      "answer": "Create a regex-based field extraction using the Field Extractor tool.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Power User exam bank",
+      "exam_number": 234
+    },
+    {
+      "card": 215,
+      "question": "When using the Field Extractor (FX) to perform a field extraction, which delimiter can be used?",
+      "answer": "Any consistent character.",
+      "hint": null,
+      "topic": "Fields & Extraction",
+      "source": "Power User exam bank",
+      "exam_number": 235
+    },
+    {
+      "card": 216,
+      "question": "Which of these SPL queries will correctly return results with an IP address of 192.0.0.1?",
+      "answer": "index=proxy | where like(ipaddress, \"192.%\")",
+      "hint": null,
+      "topic": "Search & SPL",
+      "source": "Power User exam bank",
+      "exam_number": 236
+    },
+    {
+      "card": 217,
+      "question": "What type of dataset cannot be accelerated?",
+      "answer": "Transaction",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Power User exam bank",
+      "exam_number": 237
+    },
+    {
+      "card": 218,
+      "question": "Sydney would like to use a macro called US_Sales. How should the macro name appear for it to run?",
+      "answer": "`US_Sales`",
+      "hint": null,
+      "topic": "Macros",
+      "source": "Power User exam bank",
+      "exam_number": 238
+    },
+    {
+      "card": 219,
+      "question": "Which of the following must be contained in a data model?",
+      "answer": "Root dataset",
+      "hint": null,
+      "topic": "Pivot & Data Models",
+      "source": "Power User exam bank",
+      "exam_number": 239
+    },
+    {
+      "card": 220,
+      "question": "Which option of the transaction command would be used to specify the maximum time between events in a transaction?",
+      "answer": "maxpause",
+      "hint": null,
+      "topic": "Transactions",
+      "source": "Power User exam bank",
+      "exam_number": 240
+    },
+    {
+      "card": 221,
+      "question": "While normalizing data to match the Common Information Model (CIM), a user discovers that the region field contains some misspelled values, for example \"New Bock\" instead of \"New York\". Which of the following would correct this issue?",
+      "answer": "Create a calculated field outside the CIM data model to manually adjust the values, and then make that calculated field available inside of the data model.",
+      "hint": null,
+      "topic": "CIM & Normalizing",
+      "source": "Power User exam bank",
+      "exam_number": 241
+    }
+  ]
+}
