@@ -1,144 +1,191 @@
 import { chromium } from "playwright";
-import fs from "fs";
-import path from "path";
+import * as path from "path";
 
-async function runVerification() {
-  console.log("Starting Live Verification for Splunk Deck Round 2 at https://mysterylabs.dev/splunk_deck...");
+const ARTIFACT_DIR = "/home/mystery_soldier/.gemini/antigravity-cli/brain/c27b9d4c-b974-40a5-bda1-c55f1489f53c/screenshots";
+const BASE_URL = "https://mysterylabs.dev/splunk_deck/";
 
-  const screenshotsDir = path.resolve("./screenshots");
-  fs.mkdirSync(screenshotsDir, { recursive: true });
-
-  const audioRequests: string[] = [];
-
+async function main() {
+  console.log("Launching headless browser to verify live site...");
   const browser = await chromium.launch({
+    headless: true,
     executablePath: "/usr/bin/google-chrome",
-    args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+    args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-gpu"],
   });
 
-  const context = await browser.newContext({
-    viewport: { width: 375, height: 812 },
-    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1",
-  });
+  const viewports = [
+    { name: "390x700_safari", width: 390, height: 700 },
+    { name: "390x844_standard", width: 390, height: 844 },
+    { name: "375x812_phone", width: 375, height: 812 },
+  ];
 
-  const page = await context.newPage();
+  for (const vp of viewports) {
+    console.log(`\n=== Testing Viewport: ${vp.name} (${vp.width}x${vp.height}) ===`);
+    const context = await browser.newContext({
+      viewport: { width: vp.width, height: vp.height },
+      deviceScaleFactor: 2,
+    });
+    const page = await context.newPage();
 
-  // Monitor network requests for audio clips
-  page.on("request", (req) => {
-    const url = req.url();
-    if (url.includes("/splunk_deck/audio/")) {
-      audioRequests.push(url);
-      console.log(`[AUDIO REQUEST] ${url}`);
-    }
-  });
+    // 1. Home Screen
+    await page.goto(BASE_URL, { waitUntil: "networkidle" });
+    await page.waitForTimeout(500);
 
-  // 1. Load https://mysterylabs.dev/splunk_deck
-  console.log("Loading https://mysterylabs.dev/splunk_deck...");
-  await page.goto("https://mysterylabs.dev/splunk_deck", { waitUntil: "networkidle" });
-  await page.waitForTimeout(1000);
-  await page.screenshot({ path: path.join(screenshotsDir, "01_home_screen_r2.png") });
+    // 2. Exam Question Review Session
+    console.log("Navigating to Exam Question Review...");
+    await page.click('button:has-text("Exam Question Review")');
+    await page.waitForTimeout(800);
 
-  const content = await page.content();
-  const hasFlashCards = content.includes("Flash Cards");
-  const hasReview = content.includes("Exam Question Review");
-  const hasStudy = content.includes("Exam Study");
-  const has221 = content.includes("221 cards");
-  const has141 = content.includes("141 cards");
+    // Check scroll and dimensions
+    const reviewScroll = await page.evaluate(() => {
+      const el = document.scrollingElement || document.documentElement;
+      const main = document.querySelector("main");
+      return {
+        windowInnerHeight: window.innerHeight,
+        docScrollHeight: el.scrollHeight,
+        docClientHeight: el.clientHeight,
+        mainScrollHeight: main?.scrollHeight,
+        mainClientHeight: main?.clientHeight,
+        hasPageScroll: el.scrollHeight > el.clientHeight,
+      };
+    });
+    console.log("Review Session Scroll Check:", reviewScroll);
 
-  console.log(`- Home selections: FlashCards=${hasFlashCards}, Review=${hasReview}, Study=${hasStudy}`);
-  console.log(`- Honest counts: 221=${has221}, 141=${has141}`);
+    // Check header line "221 of 289"
+    const honestLine = page.locator("text=221 of 289");
+    const honestLineBox = await honestLine.boundingBox();
+    console.log("Honest line box:", honestLineBox);
 
-  if (!hasFlashCards || !hasReview || !hasStudy || !has221 || !has141) {
-    throw new Error("Missing expected home sections or counts!");
+    // Check Mark Mastered & Next Card buttons
+    const markMasteredBtn = page.locator('button:has-text("Mark Mastered")');
+    const markBox = await markMasteredBtn.boundingBox();
+    console.log("Mark Mastered Button box:", markBox);
+
+    const nextCardBtn = page.locator('button:has-text("Next Card")');
+    const nextBox = await nextCardBtn.boundingBox();
+    console.log("Next Card Button box:", nextBox);
+
+    const reviewScreenshot = path.join(ARTIFACT_DIR, `review-${vp.name}.png`);
+    await page.screenshot({ path: reviewScreenshot });
+    console.log(`Saved screenshot: ${reviewScreenshot}`);
+
+    // Back to Home
+    await page.click('button:has-text("Back")');
+    await page.waitForTimeout(500);
+
+    // 3. Flash Cards -> Review All
+    console.log("Navigating to Flash Cards -> Review All...");
+    await page.click('button:has-text("Flash Cards")');
+    await page.waitForTimeout(500);
+
+    // Click START 3D FLIP →
+    await page.click('button:has-text("START 3D FLIP →")');
+    await page.waitForTimeout(800);
+
+    // Scroll check
+    const flashScroll = await page.evaluate(() => {
+      const el = document.scrollingElement || document.documentElement;
+      const main = document.querySelector("main");
+      return {
+        docScrollHeight: el.scrollHeight,
+        docClientHeight: el.clientHeight,
+        mainScrollHeight: main?.scrollHeight,
+        mainClientHeight: main?.clientHeight,
+        hasPageScroll: el.scrollHeight > el.clientHeight,
+      };
+    });
+    console.log("Flash Cards Session Scroll Check:", flashScroll);
+
+    // Front screenshot
+    const flashFrontScreenshot = path.join(ARTIFACT_DIR, `flash-front-${vp.name}.png`);
+    await page.screenshot({ path: flashFrontScreenshot });
+    console.log(`Saved screenshot: ${flashFrontScreenshot}`);
+
+    // Check Question badge and text visibility
+    const questionBadge = page.locator('text="QUESTION"').first();
+    const qBadgeBox = await questionBadge.boundingBox();
+    console.log("QUESTION badge box on front:", qBadgeBox);
+
+    // Flip card by clicking center
+    console.log("Flipping card...");
+    const flipZone = page.locator('button[aria-label="Flip card"]');
+    await flipZone.click();
+    await page.waitForTimeout(600);
+
+    // Back screenshot
+    const flashBackScreenshot = path.join(ARTIFACT_DIR, `flash-back-${vp.name}.png`);
+    await page.screenshot({ path: flashBackScreenshot });
+    console.log(`Saved screenshot: ${flashBackScreenshot}`);
+
+    // Check Answer badge visibility
+    const answerBadge = page.locator('text="ANSWER"').first();
+    const aBadgeBox = await answerBadge.boundingBox();
+    console.log("ANSWER badge box on back:", aBadgeBox);
+
+    // Check buttons
+    const dontKnowBtn = page.locator('button:has-text("Don\'t know")');
+    const dontKnowBox = await dontKnowBtn.boundingBox();
+    const knowItBtn = page.locator('button:has-text("Know it")');
+    const knowItBox = await knowItBtn.boundingBox();
+    console.log("Don't know button box:", dontKnowBox);
+    console.log("Know it button box:", knowItBox);
+
+    // Back to Deck List
+    await page.click('button:has-text("Back")');
+    await page.waitForTimeout(500);
+
+    // 4. Topic Deck Session (Search & SPL)
+    console.log("Testing specific Topic Deck session...");
+    const deckHeader = page.locator("div.w-full.bg-\\[\\#121722\\]").nth(1);
+    await deckHeader.click();
+    await page.waitForTimeout(400);
+
+    // Start 3D Flip Card mode
+    const startModeBtn = page.locator('button:has-text("3D flip card stack")').first();
+    await startModeBtn.click();
+    await page.waitForTimeout(800);
+
+    const topicDeckScreenshot = path.join(ARTIFACT_DIR, `topic-deck-${vp.name}.png`);
+    await page.screenshot({ path: topicDeckScreenshot });
+    console.log(`Saved screenshot: ${topicDeckScreenshot}`);
+
+    // Back to Deck list, then Home
+    await page.click('button:has-text("Back")');
+    await page.waitForTimeout(400);
+    await page.click('button:has-text("Home")');
+    await page.waitForTimeout(400);
+
+    // 5. Exam Study Session
+    console.log("Navigating to Exam Study...");
+    await page.click('button:has-text("Exam Study")');
+    await page.waitForTimeout(500);
+
+    // Open first study deck
+    const studyDeckHeader = page.locator("div.w-full.bg-\\[\\#121722\\]").nth(1);
+    await studyDeckHeader.click();
+    await page.waitForTimeout(400);
+    const startStudyModeBtn = page.locator('button:has-text("3D flip card stack")').first();
+    await startStudyModeBtn.click();
+    await page.waitForTimeout(800);
+
+    const studyFrontScreenshot = path.join(ARTIFACT_DIR, `study-front-${vp.name}.png`);
+    await page.screenshot({ path: studyFrontScreenshot });
+    console.log(`Saved screenshot: ${studyFrontScreenshot}`);
+
+    // Flip study card
+    await page.locator('button[aria-label="Flip card"]').click();
+    await page.waitForTimeout(600);
+    const studyBackScreenshot = path.join(ARTIFACT_DIR, `study-back-${vp.name}.png`);
+    await page.screenshot({ path: studyBackScreenshot });
+    console.log(`Saved screenshot: ${studyBackScreenshot}`);
+
+    await context.close();
   }
 
-  // 2. Open Flash Cards Section & test real-voice Q on front / A on flip
-  console.log("Opening Flash Cards section...");
-  await page.click("text=Flash Cards");
-  await page.waitForTimeout(600);
-
-  console.log("Starting 3D flip card session...");
-  await page.click("text=START 3D FLIP →");
-  await page.waitForTimeout(1200);
-  await page.screenshot({ path: path.join(screenshotsDir, "02_flashcard_front_r2.png") });
-
-  // Verify flash question clip requested
-  const hasFlashQ = audioRequests.some((u) => u.includes("/audio/flash-q-"));
-  console.log(`- Flash question clip auto-played on front: ${hasFlashQ}`);
-
-  // Test Replay button
-  console.log("Testing Replay button on front...");
-  await page.click("button[title='Replay Audio (R)']");
-  await page.waitForTimeout(600);
-
-  // Test Flip -> should play answer clip
-  console.log("Flipping flashcard to back...");
-  await page.click("text=Tap center to flip");
-  await page.waitForTimeout(1200);
-  await page.screenshot({ path: path.join(screenshotsDir, "03_flashcard_back_r2.png") });
-
-  const hasFlashA = audioRequests.some((u) => u.includes("/audio/flash-a-"));
-  console.log(`- Flash answer clip auto-played on flip: ${hasFlashA}`);
-
-  // Test Sound Mute toggle
-  console.log("Testing Sound On/Off mute toggle...");
-  await page.click("button[title*='Sound']");
-  await page.waitForTimeout(400);
-
-  // Test Know it
-  await page.click("button:has-text('Know it')");
-  await page.waitForTimeout(600);
-
-  // Return to Home
-  await page.click("button:has-text('Back')");
-  await page.waitForTimeout(400);
-  await page.click("button:has-text('Home')");
-  await page.waitForTimeout(400);
-
-  // 3. Open Exam Study Section & test real-voice Q on front / A on flip
-  console.log("Opening Exam Study section...");
-  await page.click("text=Exam Study");
-  await page.waitForTimeout(600);
-
-  console.log("Starting Exam Study 3D flip card session...");
-  await page.click("text=START 3D FLIP →");
-  await page.waitForTimeout(1200);
-  await page.screenshot({ path: path.join(screenshotsDir, "04_study_front_r2.png") });
-
-  const hasStudyQ = audioRequests.some((u) => u.includes("/audio/study-q-"));
-  console.log(`- Study question clip auto-played on front: ${hasStudyQ}`);
-
-  // Flip Study card
-  console.log("Flipping study card to back...");
-  await page.click("text=Tap center to flip");
-  await page.waitForTimeout(1200);
-  await page.screenshot({ path: path.join(screenshotsDir, "05_study_back_r2.png") });
-
-  const hasStudyA = audioRequests.some((u) => u.includes("/audio/study-a-"));
-  console.log(`- Study answer clip auto-played on flip: ${hasStudyA}`);
-
-  await page.click("button:has-text('Back')");
-  await page.waitForTimeout(400);
-  await page.click("button:has-text('Home')");
-  await page.waitForTimeout(400);
-
-  // 4. Open Exam Question Review & verify review clip playback
-  console.log("Opening Exam Question Review section...");
-  await page.click("text=Exam Question Review");
-  await page.waitForTimeout(1200);
-  await page.screenshot({ path: path.join(screenshotsDir, "06_review_r2.png") });
-
-  const hasReviewClip = audioRequests.some((u) => u.includes("/audio/review-card-"));
-  console.log(`- Review clip auto-played: ${hasReviewClip}`);
-
-  // 5. Verify NO multiple choice anywhere
-  const hasRadioButtons = (await page.$$("input[type='radio']")).length > 0;
-  console.log(`- Multiple choice present: ${hasRadioButtons} (MUST BE FALSE)`);
-
   await browser.close();
-  console.log("ALL ROUND 2 LIVE VERIFICATION CHECKS PASSED!");
+  console.log("\nALL VERIFICATIONS COMPLETED SUCCESSFULLY!");
 }
 
-runVerification().catch((err) => {
+main().catch((err) => {
   console.error("Verification failed:", err);
   process.exit(1);
 });

@@ -39,7 +39,7 @@ export function App() {
     return undefined;
   };
 
-  // Exam Question Review is a standalone full-screen session (Linux Deck pattern: MAIN flex h-[100dvh] flex-col overflow-hidden)
+  // Exam Question Review is a standalone full-screen session (Linux Deck pattern)
   if (currentSection === "review") {
     return (
       <ReviewSession
@@ -51,58 +51,26 @@ export function App() {
     );
   }
 
-  // Flashcards section in active session: render standalone session (Linux Deck pattern)
-  if (currentSection === "flashcards" && isChildSessionActive) {
-    return (
-      <FlashcardsSection
-        cards={EXAM_CARDS}
-        onBack={() => {
-          setIsChildSessionActive(false);
-          setCurrentSection(null);
-        }}
-        isMastered={(id) => Boolean(mastery.examMastered[id])}
-        onMarkMastered={(id) => markMastered("exam", id)}
-        onResetBankMastery={resetBankMastery}
-        onSessionChange={setIsChildSessionActive}
-      />
-    );
-  }
-
-  // Exam Study section in active session: render standalone session (Linux Deck pattern)
-  if (currentSection === "study" && isChildSessionActive) {
-    return (
-      <ExamStudySection
-        cards={STUDY_CARDS}
-        onBack={() => {
-          setIsChildSessionActive(false);
-          setCurrentSection(null);
-        }}
-        isMastered={(id) => Boolean(mastery.studyMastered[id])}
-        onMarkMastered={(id) => markMastered("study", id)}
-        onResetBankMastery={resetBankMastery}
-        onSessionChange={setIsChildSessionActive}
-      />
-    );
-  }
-
   return (
     <div className="min-h-[100dvh] bg-[#0B0E14] text-white flex flex-col font-sans selection:bg-[#FF6B00]/30 selection:text-white">
       {/* Universal Terminal Header with Google Sign-in on Home & Topic Deck lists */}
-      <Header
-        user={user}
-        googleClientId={googleClientId}
-        cloudSyncEnabled={cloudSyncEnabled}
-        isSyncing={isSyncing}
-        onUserChange={setUser}
-        onBackToHome={() => {
-          setIsChildSessionActive(false);
-          setCurrentSection(null);
-        }}
-        currentTitle={getSectionTitle()}
-      />
+      {!isChildSessionActive && (
+        <Header
+          user={user}
+          googleClientId={googleClientId}
+          cloudSyncEnabled={cloudSyncEnabled}
+          isSyncing={isSyncing}
+          onUserChange={setUser}
+          onBackToHome={() => {
+            setIsChildSessionActive(false);
+            setCurrentSection(null);
+          }}
+          currentTitle={getSectionTitle()}
+        />
+      )}
 
       {/* Main Content Area */}
-      <main className="flex-1 flex flex-col">
+      <div className={isChildSessionActive ? "flex-1 flex flex-col h-[100dvh] overflow-hidden" : "flex-1 flex flex-col"}>
         {currentSection === null && (
           <HomeSection
             onSelectSection={(sec) => {
@@ -141,7 +109,7 @@ export function App() {
             onSessionChange={setIsChildSessionActive}
           />
         )}
-      </main>
+      </div>
     </div>
   );
 }
