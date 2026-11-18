@@ -6,7 +6,7 @@
   color-scheme: dark;
 }
 
-body {
+html, body {
   margin: 0;
   padding: 0;
   background-color: #0b0e14;
@@ -14,6 +14,19 @@ body {
   font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+  -webkit-overscroll-behavior: none;
+}
+
+html.session-locked,
+body.session-locked {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  touch-action: none;
+  -webkit-overflow-scrolling: auto;
 }
 
 .preserve-3d {

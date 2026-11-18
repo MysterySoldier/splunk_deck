@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { ArrowLeft, Volume2, VolumeX, RotateCcw, Check, ArrowRight } from "lucide-react";
-import type { ExamFlashcard } from "../data/types";
+import type { ExamFlashcard, MasteredSide } from "../data/types";
 import { TOPIC_COLORS } from "../data/cards";
+import { useSessionLock } from "../hooks/useSessionLock";
 
 interface ReviewSessionProps {
   cards: ExamFlashcard[]; // Topic-grouped 221 cards
   onBack: () => void;
   isMastered: (id: number) => boolean;
   onMarkMastered: (id: number) => void;
+  masteredSide?: MasteredSide;
 }
 
 const MUTE_STORAGE_KEY = "splunk_deck_review_muted";
@@ -17,7 +19,10 @@ export const ReviewSession: React.FC<ReviewSessionProps> = ({
   onBack,
   isMastered,
   onMarkMastered,
+  masteredSide = "left",
 }) => {
+  useSessionLock(true);
+
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isMuted, setIsMuted] = useState<boolean>(() => {
     if (typeof window === "undefined") return false;
@@ -101,7 +106,12 @@ export const ReviewSession: React.FC<ReviewSessionProps> = ({
         onMarkMastered(currentCard.card);
       }
 
-      setFlyDirection(master ? "left" : "right");
+      const targetFly: "left" | "right" =
+        masteredSide === "left"
+          ? (master ? "left" : "right")
+          : (master ? "right" : "left");
+
+      setFlyDirection(targetFly);
 
       setTimeout(() => {
         setFlyDirection(null);
@@ -112,17 +122,17 @@ export const ReviewSession: React.FC<ReviewSessionProps> = ({
         }
       }, 200);
     },
-    [flyDirection, currentCard, currentIndex, cards.length, onMarkMastered],
+    [flyDirection, currentCard, currentIndex, cards.length, onMarkMastered, masteredSide],
   );
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") {
         e.preventDefault();
-        handleAdvance(true);
+        handleAdvance(masteredSide === "left");
       } else if (e.key === "ArrowRight") {
         e.preventDefault();
-        handleAdvance(false);
+        handleAdvance(masteredSide === "right");
       } else if (e.key === "r" || e.key === "R") {
         e.preventDefault();
         playCurrentClip();
@@ -133,7 +143,7 @@ export const ReviewSession: React.FC<ReviewSessionProps> = ({
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [handleAdvance, playCurrentClip]);
+  }, [handleAdvance, playCurrentClip, masteredSide]);
 
   if (!currentCard) return null;
 
@@ -141,8 +151,8 @@ export const ReviewSession: React.FC<ReviewSessionProps> = ({
   const progressRatio = (currentIndex + 1) / cards.length;
 
   return (
-    <main className="flex h-[100dvh] flex-col overflow-hidden bg-[#0B0E14] select-none">
-      <div className="w-full max-w-lg mx-auto flex-1 min-h-0 flex flex-col justify-between px-4 pt-2 pb-3 pb-[max(env(safe-area-inset-bottom),12px)]">
+    <main className="fixed inset-0 z-50 flex h-[100dvh] max-h-[100dvh] w-full flex-col justify-between overflow-hidden bg-[#0B0E14] select-none touch-none pt-[max(0.5rem,env(safe-area-inset-top))] pb-[max(0.75rem,env(safe-area-inset-bottom))] px-4">
+      <div className="w-full max-w-lg mx-auto flex-1 min-h-0 flex flex-col justify-between">
         {/* Top Header & Honest Count Line: shrink-0 */}
         <div className="flex flex-col gap-1 mb-1 shrink-0">
         <div className="flex items-center justify-between">
@@ -237,7 +247,7 @@ export const ReviewSession: React.FC<ReviewSessionProps> = ({
           </div>
 
           {/* Card Body: flex-1 min-h-0 overflow-y-auto */}
-          <div className="flex-1 min-h-0 my-2 py-1 flex flex-col justify-around gap-2 overflow-y-auto">
+          <div className="flex-1 min-h-0 my-2 py-1 flex flex-col justify-around gap-2 overflow-y-auto allow-scroll">
             {/* Question */}
             <div>
               <div className="flex items-center gap-1 font-mono text-[10px] sm:text-[11px] text-[#FF6B00] font-bold mb-1">
@@ -297,21 +307,20 @@ export const ReviewSession: React.FC<ReviewSessionProps> = ({
             </div>
           </div>
 
-          {/* TAP ZONES OVERLAY:
-              LEFT side = mark mastered and advance!
-              RIGHT side = next card without mastering!
-          */}
+          {/* TAP ZONES OVERLAY (50% / 50%) */}
           <div className="absolute inset-0 z-30 flex">
+            {/* Left Half */}
             <button
               type="button"
-              aria-label="Mark mastered and advance"
-              onClick={() => handleAdvance(true)}
+              aria-label={masteredSide === "left" ? "Mark mastered and advance" : "Next card without mastering"}
+              onClick={() => handleAdvance(masteredSide === "left")}
               className="w-1/2 h-full opacity-0 cursor-pointer focus:outline-none"
             />
+            {/* Right Half */}
             <button
               type="button"
-              aria-label="Next card without mastering"
-              onClick={() => handleAdvance(false)}
+              aria-label={masteredSide === "left" ? "Next card without mastering" : "Mark mastered and advance"}
+              onClick={() => handleAdvance(masteredSide === "right")}
               className="w-1/2 h-full opacity-0 cursor-pointer focus:outline-none"
             />
           </div>
@@ -320,27 +329,59 @@ export const ReviewSession: React.FC<ReviewSessionProps> = ({
 
         {/* Bottom Action Controls: shrink-0 */}
         <div className="w-full shrink-0 flex gap-3 pt-1">
-          <button
-            onClick={() => handleAdvance(true)}
-            className="flex-1 py-3 px-4 rounded-2xl bg-[#0D2418] hover:bg-[#123322] border-2 border-[#FF6B00] active:scale-[0.98] transition flex flex-col items-center justify-center shadow-lg shadow-[#FF6B00]/20"
-          >
-            <div className="flex items-center gap-1.5 text-[#FF6B00] font-bold text-sm">
-              <Check className="w-4 h-4" />
-              <span>Mark Mastered</span>
-            </div>
-            <span className="text-[10px] text-[#FF6B00]/70 font-mono mt-0.5">tap left edge</span>
-          </button>
+          {masteredSide === "left" ? (
+            <>
+              {/* Left Button: Mark Mastered */}
+              <button
+                onClick={() => handleAdvance(true)}
+                className="flex-1 py-3 px-4 rounded-2xl bg-[#0D2418] hover:bg-[#123322] border-2 border-[#FF6B00] active:scale-[0.98] transition flex flex-col items-center justify-center shadow-lg shadow-[#FF6B00]/20"
+              >
+                <div className="flex items-center gap-1.5 text-[#FF6B00] font-bold text-sm">
+                  <Check className="w-4 h-4" />
+                  <span>Mark Mastered</span>
+                </div>
+                <span className="text-[10px] text-[#FF6B00]/70 font-mono mt-0.5">tap left edge</span>
+              </button>
 
-          <button
-            onClick={() => handleAdvance(false)}
-            className="flex-1 py-3 px-4 rounded-2xl bg-[#1A2232] hover:bg-[#253044] border-2 border-[#2A3446] active:scale-[0.98] transition flex flex-col items-center justify-center shadow-lg shadow-black/40"
-          >
-            <div className="flex items-center gap-1.5 text-slate-200 font-bold text-sm">
-              <span>Next Card</span>
-              <ArrowRight className="w-4 h-4" />
-            </div>
-            <span className="text-[10px] text-slate-400 font-mono mt-0.5">tap right edge</span>
-          </button>
+              {/* Right Button: Next Card */}
+              <button
+                onClick={() => handleAdvance(false)}
+                className="flex-1 py-3 px-4 rounded-2xl bg-[#1A2232] hover:bg-[#253044] border-2 border-[#2A3446] active:scale-[0.98] transition flex flex-col items-center justify-center shadow-lg shadow-black/40"
+              >
+                <div className="flex items-center gap-1.5 text-slate-200 font-bold text-sm">
+                  <span>Next Card</span>
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+                <span className="text-[10px] text-slate-400 font-mono mt-0.5">tap right edge</span>
+              </button>
+            </>
+          ) : (
+            <>
+              {/* Left Button: Next Card */}
+              <button
+                onClick={() => handleAdvance(false)}
+                className="flex-1 py-3 px-4 rounded-2xl bg-[#1A2232] hover:bg-[#253044] border-2 border-[#2A3446] active:scale-[0.98] transition flex flex-col items-center justify-center shadow-lg shadow-black/40"
+              >
+                <div className="flex items-center gap-1.5 text-slate-200 font-bold text-sm">
+                  <span>Next Card</span>
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+                <span className="text-[10px] text-slate-400 font-mono mt-0.5">tap left edge</span>
+              </button>
+
+              {/* Right Button: Mark Mastered */}
+              <button
+                onClick={() => handleAdvance(true)}
+                className="flex-1 py-3 px-4 rounded-2xl bg-[#0D2418] hover:bg-[#123322] border-2 border-[#FF6B00] active:scale-[0.98] transition flex flex-col items-center justify-center shadow-lg shadow-[#FF6B00]/20"
+              >
+                <div className="flex items-center gap-1.5 text-[#FF6B00] font-bold text-sm">
+                  <Check className="w-4 h-4" />
+                  <span>Mark Mastered</span>
+                </div>
+                <span className="text-[10px] text-[#FF6B00]/70 font-mono mt-0.5">tap right edge</span>
+              </button>
+            </>
+          )}
         </div>
       </div>
     </main>

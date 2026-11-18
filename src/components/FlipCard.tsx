@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { Check, Undo2, ArrowLeft, Hand, AlertTriangle, Volume2, VolumeX, RotateCcw } from "lucide-react";
-import type { CardDirection } from "../data/types";
+import type { CardDirection, MasteredSide } from "../data/types";
+import { useSessionLock } from "../hooks/useSessionLock";
 
 export interface CardItem {
   id: number;
@@ -18,6 +19,7 @@ interface FlipCardSessionProps {
   deckColor: string;
   bankType?: "flash" | "study";
   cards: CardItem[];
+  masteredSide?: MasteredSide;
   onBack: () => void;
   onMarkMastered: (id: number) => void;
   onUnmarkMastered?: (id: number) => void;
@@ -31,9 +33,12 @@ export const FlipCardSession: React.FC<FlipCardSessionProps> = ({
   deckColor,
   bankType = "flash",
   cards,
+  masteredSide = "left",
   onBack,
   onMarkMastered,
 }) => {
+  useSessionLock(true);
+
   const [queue, setQueue] = useState<CardItem[]>(cards);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [direction, setDirection] = useState<CardDirection>("q_to_a");
@@ -162,7 +167,12 @@ export const FlipCardSession: React.FC<FlipCardSessionProps> = ({
       }
       setIsPlaying(false);
 
-      setFlyDirection(knowIt ? "right" : "left");
+      const targetFly: "left" | "right" =
+        masteredSide === "left"
+          ? (knowIt ? "left" : "right")
+          : (knowIt ? "right" : "left");
+
+      setFlyDirection(targetFly);
 
       setTimeout(() => {
         if (knowIt) {
@@ -186,7 +196,7 @@ export const FlipCardSession: React.FC<FlipCardSessionProps> = ({
         setFlyDirection(null);
       }, 230);
     },
-    [flyDirection, currentCard, queue, currentIndex, onMarkMastered],
+    [flyDirection, currentCard, queue, currentIndex, onMarkMastered, masteredSide],
   );
 
   useEffect(() => {
@@ -196,10 +206,10 @@ export const FlipCardSession: React.FC<FlipCardSessionProps> = ({
         flipCard();
       } else if (e.key === "ArrowLeft") {
         e.preventDefault();
-        handleNext(false);
+        handleNext(masteredSide === "left");
       } else if (e.key === "ArrowRight") {
         e.preventDefault();
-        handleNext(true);
+        handleNext(masteredSide === "right");
       } else if (e.key === "r" || e.key === "R") {
         e.preventDefault();
         playSideClip(flipped);
@@ -210,11 +220,11 @@ export const FlipCardSession: React.FC<FlipCardSessionProps> = ({
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [flipCard, handleNext, playSideClip, flipped]);
+  }, [flipCard, handleNext, playSideClip, flipped, masteredSide]);
 
   if (completed || !currentCard) {
     return (
-      <main className="flex h-[100dvh] flex-col items-center justify-center p-6 text-center bg-[#0B0E14] select-none">
+      <main className="fixed inset-0 z-50 flex h-[100dvh] max-h-[100dvh] w-full flex-col items-center justify-center p-6 text-center bg-[#0B0E14] select-none touch-none pt-[max(0.5rem,env(safe-area-inset-top))] pb-[max(0.75rem,env(safe-area-inset-bottom))] px-4">
         <div className="w-20 h-20 rounded-full bg-emerald-500/10 border-2 border-emerald-500 flex items-center justify-center text-emerald-400 mb-5">
           <Check className="w-10 h-10" />
         </div>
@@ -242,8 +252,8 @@ export const FlipCardSession: React.FC<FlipCardSessionProps> = ({
   const progressRatio = Math.max(0, (totalInSession - remainingInSession) / Math.max(1, totalInSession));
 
   return (
-    <main className="flex h-[100dvh] flex-col overflow-hidden bg-[#0B0E14] select-none">
-      <div className="w-full max-w-lg mx-auto flex-1 min-h-0 flex flex-col justify-between px-4 pt-2 pb-3 pb-[max(env(safe-area-inset-bottom),12px)]">
+    <main className="fixed inset-0 z-50 flex h-[100dvh] max-h-[100dvh] w-full flex-col justify-between overflow-hidden bg-[#0B0E14] select-none touch-none pt-[max(0.5rem,env(safe-area-inset-top))] pb-[max(0.75rem,env(safe-area-inset-bottom))] px-4">
+      <div className="w-full max-w-lg mx-auto flex-1 min-h-0 flex flex-col justify-between">
         {/* Header: shrink-0 */}
         <div className="flex items-center justify-between shrink-0 py-1 mb-1">
         <button
@@ -342,7 +352,7 @@ export const FlipCardSession: React.FC<FlipCardSessionProps> = ({
               </div>
 
               {/* Card Center Content: flex-1 min-h-0 */}
-              <div className="flex-1 min-h-0 flex flex-col items-center justify-center text-center px-1 my-2 overflow-y-auto">
+              <div className="flex-1 min-h-0 flex flex-col items-center justify-center text-center px-1 my-2 overflow-y-auto allow-scroll">
                 <span
                   className="inline-block shrink-0 px-2.5 py-0.5 rounded-full font-mono text-[10px] font-extrabold uppercase tracking-wider mb-2.5"
                   style={{
@@ -425,7 +435,7 @@ export const FlipCardSession: React.FC<FlipCardSessionProps> = ({
               </div>
 
               {/* Back Center Content: flex-1 min-h-0 */}
-              <div className="flex-1 min-h-0 flex flex-col items-center justify-center text-center px-1 my-2 overflow-y-auto">
+              <div className="flex-1 min-h-0 flex flex-col items-center justify-center text-center px-1 my-2 overflow-y-auto allow-scroll">
                 <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-2 font-bold shrink-0">
                   {backLabel}
                 </span>
@@ -482,11 +492,11 @@ export const FlipCardSession: React.FC<FlipCardSessionProps> = ({
 
           {/* 3-ZONE TAP OVERLAY: absolute inset-0 */}
           <div className="absolute inset-0 z-30 flex">
-            {/* Left 20%: Don't know */}
+            {/* Left 20% */}
             <button
               type="button"
-              aria-label="Don't know"
-              onClick={() => handleNext(false)}
+              aria-label={masteredSide === "left" ? "Know it" : "Don't know"}
+              onClick={() => handleNext(masteredSide === "left")}
               className="w-1/5 h-full opacity-0 cursor-pointer focus:outline-none"
             />
             {/* Center 60%: Flip */}
@@ -496,26 +506,38 @@ export const FlipCardSession: React.FC<FlipCardSessionProps> = ({
               onClick={flipCard}
               className="w-3/5 h-full opacity-0 cursor-pointer focus:outline-none"
             />
-            {/* Right 20%: Know it */}
+            {/* Right 20% */}
             <button
               type="button"
-              aria-label="Know it"
-              onClick={() => handleNext(true)}
+              aria-label={masteredSide === "left" ? "Don't know" : "Know it"}
+              onClick={() => handleNext(masteredSide === "right")}
               className="w-1/5 h-full opacity-0 cursor-pointer focus:outline-none"
             />
           </div>
 
           {/* Floating Stamps during fly-off */}
           {flyDirection === "left" && (
-            <div className="absolute top-6 left-6 z-40 px-3 py-1.5 rounded-xl bg-amber-950/90 border-2 border-amber-500 text-amber-400 font-mono font-black text-sm tracking-wider flex items-center gap-1.5 shadow-2xl rotate-[-12deg] pointer-events-none">
-              <Undo2 className="w-4 h-4" />
-              <span>REVIEW</span>
+            <div
+              className={`absolute top-6 left-6 z-40 px-3 py-1.5 rounded-xl border-2 font-mono font-black text-sm tracking-wider flex items-center gap-1.5 shadow-2xl rotate-[-12deg] pointer-events-none ${
+                masteredSide === "left"
+                  ? "bg-emerald-950/90 border-[#FF6B00] text-[#FF6B00]"
+                  : "bg-amber-950/90 border-amber-500 text-amber-400"
+              }`}
+            >
+              {masteredSide === "left" ? <Check className="w-4 h-4" /> : <Undo2 className="w-4 h-4" />}
+              <span>{masteredSide === "left" ? "MASTERED" : "REVIEW"}</span>
             </div>
           )}
           {flyDirection === "right" && (
-            <div className="absolute top-6 right-6 z-40 px-3 py-1.5 rounded-xl bg-emerald-950/90 border-2 border-[#FF6B00] text-[#FF6B00] font-mono font-black text-sm tracking-wider flex items-center gap-1.5 shadow-2xl rotate-[12deg] pointer-events-none">
-              <Check className="w-4 h-4" />
-              <span>MASTERED</span>
+            <div
+              className={`absolute top-6 right-6 z-40 px-3 py-1.5 rounded-xl border-2 font-mono font-black text-sm tracking-wider flex items-center gap-1.5 shadow-2xl rotate-[12deg] pointer-events-none ${
+                masteredSide === "left"
+                  ? "bg-amber-950/90 border-amber-500 text-amber-400"
+                  : "bg-emerald-950/90 border-[#FF6B00] text-[#FF6B00]"
+              }`}
+            >
+              {masteredSide === "left" ? <Undo2 className="w-4 h-4" /> : <Check className="w-4 h-4" />}
+              <span>{masteredSide === "left" ? "REVIEW" : "MASTERED"}</span>
             </div>
           )}
         </div>
@@ -562,29 +584,59 @@ export const FlipCardSession: React.FC<FlipCardSessionProps> = ({
 
         {/* Bottom Action Buttons: shrink-0 (Fully above safe area) */}
         <div className="w-full shrink-0 flex gap-3 pt-1">
-          {/* Don't Know Button */}
-          <button
-            onClick={() => handleNext(false)}
-            className="flex-1 py-3 px-4 rounded-2xl bg-[#2A1D0E] hover:bg-[#3D2812] border-2 border-amber-600/60 active:scale-[0.98] transition flex flex-col items-center justify-center shadow-lg shadow-amber-950/40"
-          >
-            <div className="flex items-center gap-1.5 text-amber-400 font-bold text-sm">
-              <Undo2 className="w-4 h-4" />
-              <span>Don't know</span>
-            </div>
-            <span className="text-[10px] text-amber-500/70 font-mono mt-0.5">tap left edge</span>
-          </button>
+          {masteredSide === "left" ? (
+            <>
+              {/* Left Button: Know it (Splunk accent) */}
+              <button
+                onClick={() => handleNext(true)}
+                className="flex-1 py-3 px-4 rounded-2xl bg-[#0D2418] hover:bg-[#123322] border-2 border-[#FF6B00] active:scale-[0.98] transition flex flex-col items-center justify-center shadow-lg shadow-[#FF6B00]/20"
+              >
+                <div className="flex items-center gap-1.5 text-[#FF6B00] font-bold text-sm">
+                  <Check className="w-4 h-4" />
+                  <span>Know it</span>
+                </div>
+                <span className="text-[10px] text-[#FF6B00]/70 font-mono mt-0.5">tap left edge</span>
+              </button>
 
-          {/* Know It Button */}
-          <button
-            onClick={() => handleNext(true)}
-            className="flex-1 py-3 px-4 rounded-2xl bg-[#0D2418] hover:bg-[#123322] border-2 border-[#FF6B00] active:scale-[0.98] transition flex flex-col items-center justify-center shadow-lg shadow-[#FF6B00]/20"
-          >
-            <div className="flex items-center gap-1.5 text-[#FF6B00] font-bold text-sm">
-              <Check className="w-4 h-4" />
-              <span>Know it</span>
-            </div>
-            <span className="text-[10px] text-[#FF6B00]/70 font-mono mt-0.5">tap right edge</span>
-          </button>
+              {/* Right Button: Don't know (amber) */}
+              <button
+                onClick={() => handleNext(false)}
+                className="flex-1 py-3 px-4 rounded-2xl bg-[#2A1D0E] hover:bg-[#3D2812] border-2 border-amber-600/60 active:scale-[0.98] transition flex flex-col items-center justify-center shadow-lg shadow-amber-950/40"
+              >
+                <div className="flex items-center gap-1.5 text-amber-400 font-bold text-sm">
+                  <Undo2 className="w-4 h-4" />
+                  <span>Don't know</span>
+                </div>
+                <span className="text-[10px] text-amber-500/70 font-mono mt-0.5">tap right edge</span>
+              </button>
+            </>
+          ) : (
+            <>
+              {/* Left Button: Don't know (amber) */}
+              <button
+                onClick={() => handleNext(false)}
+                className="flex-1 py-3 px-4 rounded-2xl bg-[#2A1D0E] hover:bg-[#3D2812] border-2 border-amber-600/60 active:scale-[0.98] transition flex flex-col items-center justify-center shadow-lg shadow-amber-950/40"
+              >
+                <div className="flex items-center gap-1.5 text-amber-400 font-bold text-sm">
+                  <Undo2 className="w-4 h-4" />
+                  <span>Don't know</span>
+                </div>
+                <span className="text-[10px] text-amber-500/70 font-mono mt-0.5">tap left edge</span>
+              </button>
+
+              {/* Right Button: Know it (Splunk accent) */}
+              <button
+                onClick={() => handleNext(true)}
+                className="flex-1 py-3 px-4 rounded-2xl bg-[#0D2418] hover:bg-[#123322] border-2 border-[#FF6B00] active:scale-[0.98] transition flex flex-col items-center justify-center shadow-lg shadow-[#FF6B00]/20"
+              >
+                <div className="flex items-center gap-1.5 text-[#FF6B00] font-bold text-sm">
+                  <Check className="w-4 h-4" />
+                  <span>Know it</span>
+                </div>
+                <span className="text-[10px] text-[#FF6B00]/70 font-mono mt-0.5">tap right edge</span>
+              </button>
+            </>
+          )}
         </div>
       </div>
     </main>

@@ -18,6 +18,8 @@ export function App() {
     googleClientId,
     cloudSyncEnabled,
     isSyncing,
+    masteredSide,
+    setMasteredSide,
     setUser,
     markMastered,
     unmarkMastered,
@@ -47,6 +49,7 @@ export function App() {
         onBack={() => setCurrentSection(null)}
         isMastered={(id) => Boolean(mastery.examMastered[id])}
         onMarkMastered={(id) => markMastered("exam", id)}
+        masteredSide={masteredSide}
       />
     );
   }
@@ -79,6 +82,8 @@ export function App() {
             }}
             examMasteredCount={examMasteredCount}
             studyMasteredCount={studyMasteredCount}
+            masteredSide={masteredSide}
+            onMasteredSideChange={setMasteredSide}
           />
         )}
 
@@ -93,6 +98,7 @@ export function App() {
             onMarkMastered={(id) => markMastered("exam", id)}
             onResetBankMastery={resetBankMastery}
             onSessionChange={setIsChildSessionActive}
+            masteredSide={masteredSide}
           />
         )}
 
@@ -107,6 +113,7 @@ export function App() {
             onMarkMastered={(id) => markMastered("study", id)}
             onResetBankMastery={resetBankMastery}
             onSessionChange={setIsChildSessionActive}
+            masteredSide={masteredSide}
           />
         )}
       </div>

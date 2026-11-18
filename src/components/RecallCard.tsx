@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { ArrowLeft, Lightbulb, Check, AlertCircle, ArrowRight } from "lucide-react";
 import type { CardItem } from "./FlipCard";
+import { useSessionLock } from "../hooks/useSessionLock";
 
 interface RecallSessionProps {
   deckTitle: string;
@@ -19,6 +20,8 @@ export const RecallSession: React.FC<RecallSessionProps> = ({
   onBack,
   onMarkMastered,
 }) => {
+  useSessionLock(true);
+
   const [queue, setQueue] = useState<CardItem[]>(cards);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [inputVal, setInputVal] = useState<string>("");
@@ -86,7 +89,7 @@ export const RecallSession: React.FC<RecallSessionProps> = ({
 
   if (completed || !currentCard) {
     return (
-      <main className="flex h-[100dvh] flex-col items-center justify-center p-6 text-center bg-[#0B0E14] select-none">
+      <main className="fixed inset-0 z-50 flex h-[100dvh] max-h-[100dvh] w-full flex-col items-center justify-center p-6 text-center bg-[#0B0E14] select-none touch-none pt-[max(0.5rem,env(safe-area-inset-top))] pb-[max(0.75rem,env(safe-area-inset-bottom))] px-4">
         <div className="w-20 h-20 rounded-full bg-emerald-500/10 border-2 border-emerald-500 flex items-center justify-center text-emerald-400 mb-5">
           <Check className="w-10 h-10" />
         </div>
@@ -109,8 +112,8 @@ export const RecallSession: React.FC<RecallSessionProps> = ({
   const progressRatio = Math.max(0, (initialTotal - queue.length) / Math.max(1, initialTotal));
 
   return (
-    <main className="flex h-[100dvh] flex-col overflow-hidden bg-[#0B0E14] select-none">
-      <div className="w-full max-w-lg mx-auto flex-1 min-h-0 flex flex-col justify-between px-4 pt-2 pb-3 pb-[max(env(safe-area-inset-bottom),12px)]">
+    <main className="fixed inset-0 z-50 flex h-[100dvh] max-h-[100dvh] w-full flex-col justify-between overflow-hidden bg-[#0B0E14] select-none touch-none pt-[max(0.5rem,env(safe-area-inset-top))] pb-[max(0.75rem,env(safe-area-inset-bottom))] px-4">
+      <div className="w-full max-w-lg mx-auto flex-1 min-h-0 flex flex-col justify-between">
         {/* Header: shrink-0 */}
         <div className="flex items-center justify-between shrink-0 py-1 mb-1">
         <button
@@ -154,7 +157,7 @@ export const RecallSession: React.FC<RecallSessionProps> = ({
         </div>
 
         {/* Question Prompt: flex-1 min-h-0 overflow-y-auto */}
-        <div className="flex-1 min-h-0 my-2 py-1 flex flex-col justify-center overflow-y-auto">
+        <div className="flex-1 min-h-0 my-2 py-1 flex flex-col justify-center overflow-y-auto allow-scroll">
           <div className="text-white text-sm sm:text-base font-medium leading-relaxed mb-3">
             {currentCard.question}
           </div>

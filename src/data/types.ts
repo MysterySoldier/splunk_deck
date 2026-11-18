@@ -33,6 +33,8 @@ export type StudyMode = "flashcard" | "recall";
 
 export type CardDirection = "q_to_a" | "a_to_q" | "mix";
 
+export type MasteredSide = "left" | "right";
+
 export interface UserAccount {
   googleId: string;
   displayName: string;
@@ -44,5 +46,6 @@ export interface UserAccount {
 export interface MasteryState {
   examMastered: Record<number, boolean>; // key is card number (1..221)
   studyMastered: Record<number, boolean>; // key is card number (1..141)
+  masteredSide?: MasteredSide; // "left" (default) or "right"
   updatedAt: number;
 }

@@ -1,24 +1,48 @@
 import { useState, useEffect, useCallback } from "react";
-import type { MasteryState, UserAccount } from "../data/types";
+import type { MasteryState, UserAccount, MasteredSide } from "../data/types";
 
 const LOCAL_STORAGE_KEY = "splunk_deck_mastery_v1";
 const LOCAL_USER_KEY = "splunk_deck_user_v1";
+const LOCAL_SIDE_KEY = "splunk_deck_mastered_side";
 
 const defaultMastery: MasteryState = {
   examMastered: {},
   studyMastered: {},
+  masteredSide: "left",
   updatedAt: 0,
 };
+
+export function loadLocalSide(): MasteredSide {
+  if (typeof window === "undefined") return "left";
+  try {
+    const raw = localStorage.getItem(LOCAL_SIDE_KEY);
+    if (raw === "right") return "right";
+    return "left";
+  } catch {
+    return "left";
+  }
+}
+
+export function saveLocalSide(side: MasteredSide) {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(LOCAL_SIDE_KEY, side);
+  } catch {
+    // ignore
+  }
+}
 
 export function loadLocalMastery(): MasteryState {
   if (typeof window === "undefined") return defaultMastery;
   try {
     const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (!raw) return defaultMastery;
+    const side = loadLocalSide();
+    if (!raw) return { ...defaultMastery, masteredSide: side };
     const parsed = JSON.parse(raw);
     return {
       examMastered: parsed.examMastered || {},
       studyMastered: parsed.studyMastered || {},
+      masteredSide: parsed.masteredSide || side || "left",
       updatedAt: parsed.updatedAt || 0,
     };
   } catch {
@@ -30,6 +54,9 @@ export function saveLocalMastery(state: MasteryState) {
   if (typeof window === "undefined") return;
   try {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
+    if (state.masteredSide) {
+      saveLocalSide(state.masteredSide);
+    }
   } catch {
     // ignore
   }
@@ -59,23 +86,36 @@ export function saveLocalUser(user: UserAccount | null) {
   }
 }
 
-/** Merges two mastery states (union of mastered cards) */
+/** Merges two mastery states (union of mastered cards + latest side) */
 export function mergeMastery(a: MasteryState, b: MasteryState): MasteryState {
   const examMastered: Record<number, boolean> = { ...a.examMastered, ...b.examMastered };
   const studyMastered: Record<number, boolean> = { ...a.studyMastered, ...b.studyMastered };
+  const masteredSide: MasteredSide = b.masteredSide || a.masteredSide || "left";
   return {
     examMastered,
     studyMastered,
+    masteredSide,
     updatedAt: Math.max(a.updatedAt || 0, b.updatedAt || 0, Date.now()),
   };
 }
 
 export function useMastery() {
   const [mastery, setMasteryState] = useState<MasteryState>(loadLocalMastery);
+  const [masteredSide, setMasteredSideState] = useState<MasteredSide>(() => {
+    return loadLocalSide();
+  });
   const [user, setUserState] = useState<UserAccount | null>(loadLocalUser);
   const [googleClientId, setGoogleClientId] = useState<string>("");
   const [cloudSyncEnabled, setCloudSyncEnabled] = useState<boolean>(true);
   const [isSyncing, setIsSyncing] = useState<boolean>(false);
+
+  // Sync side state with mastery state
+  useEffect(() => {
+    if (mastery.masteredSide && mastery.masteredSide !== masteredSide) {
+      setMasteredSideState(mastery.masteredSide);
+      saveLocalSide(mastery.masteredSide);
+    }
+  }, [mastery.masteredSide, masteredSide]);
 
   // Fetch /api/auth/config on mount
   useEffect(() => {
@@ -126,6 +166,10 @@ export function useMastery() {
           const merged = mergeMastery(stateToSync, data.account.mastery);
           saveLocalMastery(merged);
           setMasteryState(merged);
+          if (merged.masteredSide) {
+            setMasteredSideState(merged.masteredSide);
+            saveLocalSide(merged.masteredSide);
+          }
         }
       }
     } catch (e) {
@@ -148,6 +192,10 @@ export function useMastery() {
           const merged = mergeMastery(local, data.account.mastery);
           saveLocalMastery(merged);
           setMasteryState(merged);
+          if (merged.masteredSide) {
+            setMasteredSideState(merged.masteredSide);
+            saveLocalSide(merged.masteredSide);
+          }
           // Push merged state back to cloud
           await syncToCloud(merged, currentUser);
         }
@@ -166,6 +214,23 @@ export function useMastery() {
       fetchCloudMastery(newUser);
     }
   }, [fetchCloudMastery]);
+
+  const setMasteredSide = useCallback((side: MasteredSide) => {
+    setMasteredSideState(side);
+    saveLocalSide(side);
+    setMasteryState((prev) => {
+      const next: MasteryState = {
+        ...prev,
+        masteredSide: side,
+        updatedAt: Date.now(),
+      };
+      saveLocalMastery(next);
+      if (user) {
+        syncToCloud(next, user);
+      }
+      return next;
+    });
+  }, [user, syncToCloud]);
 
   const markMastered = useCallback((bank: "exam" | "study", cardId: number) => {
     setMasteryState((prev) => {
@@ -192,6 +257,7 @@ export function useMastery() {
       const next: MasteryState = {
         examMastered: nextExam,
         studyMastered: nextStudy,
+        masteredSide: prev.masteredSide || masteredSide,
         updatedAt: Date.now(),
       };
       saveLocalMastery(next);
@@ -200,7 +266,7 @@ export function useMastery() {
       }
       return next;
     });
-  }, [user, syncToCloud]);
+  }, [user, syncToCloud, masteredSide]);
 
   const resetBankMastery = useCallback((bank: "exam" | "study", topic?: string, cardIds?: number[]) => {
     setMasteryState((prev) => {
@@ -221,6 +287,7 @@ export function useMastery() {
       const next: MasteryState = {
         examMastered: nextExam,
         studyMastered: nextStudy,
+        masteredSide: prev.masteredSide || masteredSide,
         updatedAt: Date.now(),
       };
       saveLocalMastery(next);
@@ -229,10 +296,12 @@ export function useMastery() {
       }
       return next;
     });
-  }, [user, syncToCloud]);
+  }, [user, syncToCloud, masteredSide]);
 
   return {
     mastery,
+    masteredSide,
+    setMasteredSide,
     user,
     googleClientId,
     cloudSyncEnabled,

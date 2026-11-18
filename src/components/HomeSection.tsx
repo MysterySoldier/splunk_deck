@@ -1,17 +1,21 @@
 import React from "react";
-import { Layers, Headphones, BookOpen, ChevronRight, CheckCircle2 } from "lucide-react";
-import type { DeckSection } from "../data/types";
+import { Layers, Headphones, BookOpen, ChevronRight, CheckCircle2, Sliders } from "lucide-react";
+import type { DeckSection, MasteredSide } from "../data/types";
 
 interface HomeSectionProps {
   onSelectSection: (section: DeckSection) => void;
   examMasteredCount: number;
   studyMasteredCount: number;
+  masteredSide: MasteredSide;
+  onMasteredSideChange: (side: MasteredSide) => void;
 }
 
 export const HomeSection: React.FC<HomeSectionProps> = ({
   onSelectSection,
   examMasteredCount,
   studyMasteredCount,
+  masteredSide,
+  onMasteredSideChange,
 }) => {
   return (
     <div className="w-full max-w-lg mx-auto px-4 py-6 flex flex-col gap-5">
@@ -134,6 +138,43 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
             </div>
           </div>
         </button>
+      </div>
+
+      {/* User Setting: Mastered Side */}
+      <div className="bg-[#141A26]/80 border border-[#2A3446] rounded-[22px] p-4 flex flex-col gap-2.5">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Sliders className="w-4 h-4 text-[#FF6B00]" />
+            <span className="text-xs font-bold text-white uppercase tracking-wider">Mastered Side</span>
+          </div>
+          <div className="flex items-center bg-[#0B0E14] border border-[#2A3446] p-1 rounded-xl">
+            <button
+              type="button"
+              onClick={() => onMasteredSideChange("left")}
+              className={`px-3 py-1 text-xs font-semibold rounded-lg transition-all ${
+                masteredSide === "left"
+                  ? "bg-[#FF6B00] text-white shadow-sm"
+                  : "text-[#8E9AA8] hover:text-white"
+              }`}
+            >
+              Left (default)
+            </button>
+            <button
+              type="button"
+              onClick={() => onMasteredSideChange("right")}
+              className={`px-3 py-1 text-xs font-semibold rounded-lg transition-all ${
+                masteredSide === "right"
+                  ? "bg-[#FF6B00] text-white shadow-sm"
+                  : "text-[#8E9AA8] hover:text-white"
+              }`}
+            >
+              Right
+            </button>
+          </div>
+        </div>
+        <p className="text-[11px] text-[#8E9AA8] leading-tight">
+          Choose which card edge & button marks cards mastered vs sending back for review.
+        </p>
       </div>
 
       <div className="mt-2 text-center text-[11px] font-mono text-[#5A687C]">

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ArrowLeft, ChevronDown, Play, Sparkles, Terminal, RotateCcw, CheckCircle2 } from "lucide-react";
-import type { ExamFlashcard, TopicDeckInfo } from "../data/types";
+import type { ExamFlashcard, TopicDeckInfo, MasteredSide } from "../data/types";
 import { EXAM_TOPIC_DECKS, shuffleArray } from "../data/cards";
 import { FlipCardSession, type CardItem } from "./FlipCard";
 import { RecallSession } from "./RecallCard";
@@ -12,6 +12,7 @@ interface FlashcardsSectionProps {
   onMarkMastered: (id: number) => void;
   onResetBankMastery: (bank: "exam", topic?: string, ids?: number[]) => void;
   onSessionChange?: (inSession: boolean) => void;
+  masteredSide?: MasteredSide;
 }
 
 export const FlashcardsSection: React.FC<FlashcardsSectionProps> = ({
@@ -21,6 +22,7 @@ export const FlashcardsSection: React.FC<FlashcardsSectionProps> = ({
   onMarkMastered,
   onResetBankMastery,
   onSessionChange,
+  masteredSide,
 }) => {
   const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
   const [activeSession, setActiveSession] = useState<{
@@ -49,6 +51,7 @@ export const FlashcardsSection: React.FC<FlashcardsSectionProps> = ({
           deckColor={activeSession.deckColor}
           bankType="flash"
           cards={activeSession.cards}
+          masteredSide={masteredSide}
           onBack={() => setActiveSession(null)}
           onMarkMastered={onMarkMastered}
         />
