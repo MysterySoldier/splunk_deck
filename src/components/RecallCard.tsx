@@ -74,7 +74,6 @@ export const RecallSession: React.FC<RecallSessionProps> = ({
 
   const handleSkipOrContinue = useCallback(() => {
     if (!currentCard) return;
-    // Re-queue to end
     const nextQueue = [...queue];
     const [moved] = nextQueue.splice(currentIndex, 1);
     nextQueue.push(moved);
@@ -87,7 +86,7 @@ export const RecallSession: React.FC<RecallSessionProps> = ({
 
   if (completed || !currentCard) {
     return (
-      <div className="w-full max-w-md mx-auto min-h-[calc(100vh-65px)] flex flex-col items-center justify-center p-6 text-center">
+      <main className="flex h-[100dvh] flex-col items-center justify-center p-6 text-center bg-[#0B0E14] select-none">
         <div className="w-20 h-20 rounded-full bg-emerald-500/10 border-2 border-emerald-500 flex items-center justify-center text-emerald-400 mb-5">
           <Check className="w-10 h-10" />
         </div>
@@ -101,7 +100,7 @@ export const RecallSession: React.FC<RecallSessionProps> = ({
         >
           Return to Decks
         </button>
-      </div>
+      </main>
     );
   }
 
@@ -110,9 +109,10 @@ export const RecallSession: React.FC<RecallSessionProps> = ({
   const progressRatio = Math.max(0, (initialTotal - queue.length) / Math.max(1, initialTotal));
 
   return (
-    <div className="w-full max-w-md mx-auto min-h-[calc(100vh-65px)] flex flex-col justify-between px-4 py-3 select-none">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-2">
+    <main className="flex h-[100dvh] flex-col overflow-hidden bg-[#0B0E14] select-none">
+      <div className="w-full max-w-lg mx-auto flex-1 min-h-0 flex flex-col justify-between px-4 pt-2 pb-3 pb-[max(env(safe-area-inset-bottom),12px)]">
+        {/* Header: shrink-0 */}
+        <div className="flex items-center justify-between shrink-0 py-1 mb-1">
         <button
           onClick={onBack}
           className="flex items-center gap-1.5 text-xs font-semibold text-[#FF6B00] hover:text-white transition py-1"
@@ -121,7 +121,7 @@ export const RecallSession: React.FC<RecallSessionProps> = ({
           <span>Back</span>
         </button>
         <div className="text-center">
-          <div className="text-xs font-bold text-white tracking-wide truncate max-w-[200px]">
+          <div className="text-xs font-bold text-white tracking-wide truncate max-w-[170px]">
             {deckTitle}
           </div>
           <div className="font-mono text-[10px] text-[#FF6B00] font-bold tracking-wider">
@@ -133,10 +133,10 @@ export const RecallSession: React.FC<RecallSessionProps> = ({
         </div>
       </div>
 
-      {/* Main Recall Card */}
-      <div className="relative flex-1 min-h-[360px] my-2 w-full rounded-[32px] bg-[#0F141F] border border-[#2A3446] p-6 flex flex-col justify-between shadow-2xl">
-        {/* Top prompt */}
-        <div className="flex items-center justify-between">
+      {/* Main Recall Card: flex-1 min-h-0 relative */}
+      <div className="relative flex-1 min-h-0 w-full my-1 rounded-[32px] bg-[#0F141F] border border-[#2A3446] p-5 flex flex-col justify-between shadow-2xl overflow-hidden">
+        {/* Top prompt: shrink-0 */}
+        <div className="flex items-center justify-between shrink-0">
           <div className="flex items-center gap-1.5 font-mono text-xs text-[#8E9AA8]">
             <span className="text-[#FF6B00] font-bold">admin@splunk</span>
             <span>:~/{topicSlug}</span>
@@ -153,15 +153,15 @@ export const RecallSession: React.FC<RecallSessionProps> = ({
           </span>
         </div>
 
-        {/* Question Prompt */}
-        <div className="my-auto py-4">
-          <div className="text-white text-base sm:text-lg font-medium leading-relaxed mb-4">
+        {/* Question Prompt: flex-1 min-h-0 overflow-y-auto */}
+        <div className="flex-1 min-h-0 my-2 py-1 flex flex-col justify-center overflow-y-auto">
+          <div className="text-white text-sm sm:text-base font-medium leading-relaxed mb-3">
             {currentCard.question}
           </div>
 
           {/* Hint Section */}
           {showHint ? (
-            <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono mb-4 flex items-start gap-2">
+            <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono mb-3 flex items-start gap-2">
               <Lightbulb className="w-4 h-4 shrink-0 text-amber-400 mt-0.5" />
               <div>
                 <span className="font-bold">Hint:</span> Starts with <strong className="text-white">"{hintPrefix}"</strong> ({totalChars} characters)
@@ -171,7 +171,7 @@ export const RecallSession: React.FC<RecallSessionProps> = ({
             <button
               type="button"
               onClick={() => setShowHint(true)}
-              className="text-xs text-amber-400 hover:text-amber-300 flex items-center gap-1.5 font-mono mb-4 opacity-90 hover:opacity-100 transition"
+              className="text-xs text-amber-400 hover:text-amber-300 flex items-center gap-1.5 font-mono mb-3 opacity-90 hover:opacity-100 transition self-start"
             >
               <Lightbulb className="w-3.5 h-3.5" />
               <span>Show Hint (No Penalty)</span>
@@ -195,7 +195,7 @@ export const RecallSession: React.FC<RecallSessionProps> = ({
                 value={inputVal}
                 onChange={(e) => setInputVal(e.target.value)}
                 disabled={status !== "idle"}
-                className={`w-full pl-7 pr-3 py-3 rounded-xl bg-[#0B0E14] border font-mono text-xs sm:text-sm text-white placeholder-slate-600 outline-none transition ${
+                className={`w-full pl-7 pr-3 py-2.5 rounded-xl bg-[#0B0E14] border font-mono text-xs sm:text-sm text-white placeholder-slate-600 outline-none transition ${
                   status === "correct"
                     ? "border-emerald-500 bg-emerald-950/20 text-emerald-300"
                     : status === "incorrect"
@@ -206,12 +206,12 @@ export const RecallSession: React.FC<RecallSessionProps> = ({
             </div>
 
             {status === "incorrect" && (
-              <div className="mt-2 p-3 rounded-xl bg-red-950/30 border border-red-500/40 text-xs flex flex-col gap-1 text-red-200">
-                <div className="flex items-center gap-1.5 font-bold text-red-400">
-                  <AlertCircle className="w-4 h-4 shrink-0" />
+              <div className="mt-1 p-2.5 rounded-xl bg-red-950/30 border border-red-500/40 text-xs flex flex-col gap-1 text-red-200">
+                <div className="flex items-center gap-1.5 font-bold text-red-400 text-xs">
+                  <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                   <span>Not quite! Expected answer:</span>
                 </div>
-                <div className="font-mono bg-black/40 p-2 rounded-lg text-emerald-300 break-words">
+                <div className="font-mono bg-black/40 p-2 rounded-lg text-emerald-300 break-words text-xs">
                   {currentCard.answer}
                 </div>
               </div>
@@ -219,8 +219,8 @@ export const RecallSession: React.FC<RecallSessionProps> = ({
           </form>
         </div>
 
-        {/* Card Footer Progress */}
-        <div className="flex flex-col gap-1.5 pt-2 border-t border-[#1C2433]">
+        {/* Card Footer Progress: shrink-0 */}
+        <div className="flex flex-col gap-1.5 pt-2 border-t border-[#1C2433] shrink-0">
           <div className="flex items-center justify-between text-[11px] font-mono text-slate-400">
             <span>card {currentIndex + 1} of {queue.length}</span>
             <div className="flex items-center gap-1">
@@ -240,8 +240,8 @@ export const RecallSession: React.FC<RecallSessionProps> = ({
         </div>
       </div>
 
-      {/* Bottom Action Controls */}
-      <div className="w-full flex gap-3 pt-2 pb-2">
+      {/* Bottom Action Controls: shrink-0 */}
+      <div className="w-full shrink-0 flex gap-3 pt-1 pb-1">
         {status === "idle" ? (
           <>
             <button
@@ -273,5 +273,6 @@ export const RecallSession: React.FC<RecallSessionProps> = ({
         )}
       </div>
     </div>
-  );
+  </main>
+);
 };

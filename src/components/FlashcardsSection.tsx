@@ -11,6 +11,7 @@ interface FlashcardsSectionProps {
   isMastered: (id: number) => boolean;
   onMarkMastered: (id: number) => void;
   onResetBankMastery: (bank: "exam", topic?: string, ids?: number[]) => void;
+  onSessionChange?: (inSession: boolean) => void;
 }
 
 export const FlashcardsSection: React.FC<FlashcardsSectionProps> = ({
@@ -19,6 +20,7 @@ export const FlashcardsSection: React.FC<FlashcardsSectionProps> = ({
   isMastered,
   onMarkMastered,
   onResetBankMastery,
+  onSessionChange,
 }) => {
   const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
   const [activeSession, setActiveSession] = useState<{
@@ -28,6 +30,10 @@ export const FlashcardsSection: React.FC<FlashcardsSectionProps> = ({
     deckColor: string;
     cards: CardItem[];
   } | null>(null);
+
+  React.useEffect(() => {
+    onSessionChange?.(Boolean(activeSession));
+  }, [activeSession, onSessionChange]);
 
   const totalCards = cards.length;
   const totalMastered = cards.filter((c) => isMastered(c.card)).length;
@@ -41,6 +47,7 @@ export const FlashcardsSection: React.FC<FlashcardsSectionProps> = ({
           deckTitle={activeSession.deckTitle}
           topicSlug={activeSession.topicSlug}
           deckColor={activeSession.deckColor}
+          bankType="flash"
           cards={activeSession.cards}
           onBack={() => setActiveSession(null)}
           onMarkMastered={onMarkMastered}

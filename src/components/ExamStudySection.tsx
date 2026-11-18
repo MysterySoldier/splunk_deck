@@ -11,6 +11,7 @@ interface ExamStudySectionProps {
   isMastered: (id: number) => boolean;
   onMarkMastered: (id: number) => void;
   onResetBankMastery: (bank: "study", topic?: string, ids?: number[]) => void;
+  onSessionChange?: (inSession: boolean) => void;
 }
 
 export const ExamStudySection: React.FC<ExamStudySectionProps> = ({
@@ -19,6 +20,7 @@ export const ExamStudySection: React.FC<ExamStudySectionProps> = ({
   isMastered,
   onMarkMastered,
   onResetBankMastery,
+  onSessionChange,
 }) => {
   const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
   const [activeSession, setActiveSession] = useState<{
@@ -28,6 +30,10 @@ export const ExamStudySection: React.FC<ExamStudySectionProps> = ({
     deckColor: string;
     cards: CardItem[];
   } | null>(null);
+
+  React.useEffect(() => {
+    onSessionChange?.(Boolean(activeSession));
+  }, [activeSession, onSessionChange]);
 
   const totalCards = cards.length;
   const totalMastered = cards.filter((c) => isMastered(c.card)).length;
@@ -41,6 +47,7 @@ export const ExamStudySection: React.FC<ExamStudySectionProps> = ({
           deckTitle={activeSession.deckTitle}
           topicSlug={activeSession.topicSlug}
           deckColor={activeSession.deckColor}
+          bankType="study"
           cards={activeSession.cards}
           onBack={() => setActiveSession(null)}
           onMarkMastered={onMarkMastered}
